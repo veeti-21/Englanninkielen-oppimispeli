@@ -1,16 +1,12 @@
 let replacedWords = []; 
+let theword = "";
 
 function showInput() {
   let text = document.getElementById("userInput").value;
-
-  if (text == "test") {
-    document.getElementById("output2").textContent = text + 2;
-  }
-
+  theword = text;
 
   const regex = /\bisn['’]t\b|\baren['’]t\b|\bis\b|\bare\b|\bthere\b|\bnot\b/gi;
-
-
+  
   replacedWords = text.match(regex) || [];
 
   text = text.replace(regex, "_____");
@@ -24,6 +20,7 @@ function showInput2() {
 
   if(replacedWords.join(", ").toLowerCase() === text.toLowerCase() | replacedWords.join(",").toLowerCase() === text.toLowerCase()){ 
     document.getElementById("output2").textContent = "Correct!";
+    document.getElementById("input").textContent = theword;
   } else {
     document.getElementById("output2").textContent = "Try again!";
   }
