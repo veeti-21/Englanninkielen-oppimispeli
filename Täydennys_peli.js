@@ -1,11 +1,21 @@
+
+let sentances = ["This book is very interesting.", "They aren't coming to the party.", "There is a cat on the roof.", "He isn't going to school today.", "We are happy with the results.", "She is not feeling well.", "There are many stars in the sky.", "It isn't easy to learn a new language.", "There are no cookies left in the jar.", "Isn't it a beautiful day?"];
 let replacedWords = []; 
 let theword = "";
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function showInput() {
   let text = document.getElementById("userInput").value;
-  theword = text;
 
-  const regex = /\bisn['’]t\b|\baren['’]t\b|\bis\b|\bare\b|\bthere\b|\bnot\b/gi;
+  if (text.trim() === "") {    
+    text = sentances[getRandomInt(0, sentances.length - 1)];
+  }
+
+  theword = text;
+  const regex = /\bisn't\b|\baren't\b|\bis\b|\bare\b|\bthere\b|\bnot\b/gi;
   
   replacedWords = text.match(regex) || [];
 
