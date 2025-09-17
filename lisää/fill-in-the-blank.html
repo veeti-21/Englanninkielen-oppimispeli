@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Input Example</title>
+  <link rel="stylesheet" href="fill-in-the-blank.css" />
+</head>
+<body>
+  <h2></h2>
+
+  <button onclick="showInput()">Submit</button>
+
+  <p id="output"></p>
+
+  <input type="text" id="userInput2" placeholder="Type something..." />
+  <button onclick="checkAnswer()">Answer</button> 
+  <button onclick="showAnswer()" class="test" id="test">Show solution</button>
+  
+  <p id="output2"></p>
+  <p id="input"></p>
+
+  <!-- Game Info Modal -->
+  <div id="gameModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000;">
+    <div style="background:#fff; max-width:400px; margin:10% auto; padding:2em; border-radius:8px; text-align:center;">
+      <h2>Welcome to the Fill-in-the-Blank Game!</h2>
+      <p>Fill in the missing word in each sentence.</p>
+      <button onclick="closeModal()">Start Game</button>
+      <button onclick="goToAddSentences()">Add Own Sentences</button>
+    </div>
+  </div>
+
+  <script src="fill-in-the-blank.js"></script>
+</body>
+</html>
