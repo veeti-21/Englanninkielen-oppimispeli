@@ -5,7 +5,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Open Täydennys_peli.html",
-      "url": "file:///${workspaceFolder}/Täydennys_peli.html",
+      "url": "file:///${workspaceFolder}/fill-in-the-blank.html",
       "webRoot": "${workspaceFolder}"
     }
   ]
