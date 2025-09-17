@@ -1,3 +1,45 @@
 .test {
   display: none;
 }
+
+/* Modal overlay */
+#gameModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+
+#gameModal > div {
+  background: #fff;
+  max-width: 500px;
+  margin: 10% auto;
+  padding: 2em;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+#gameModal h2 {
+  margin-top: 0;
+  color: #2a4d8f;
+}
+
+#gameModal button {
+  margin: 0.5em 1em;
+  padding: 0.5em 1.5em;
+  border: none;
+  border-radius: 4px;
+  background: #2a4d8f;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#gameModal button:hover {
+  background: #1a2d5f;
+}
