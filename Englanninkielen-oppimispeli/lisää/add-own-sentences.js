@@ -1,3 +1,4 @@
+
 // Load custom sentences from localStorage
 let ownsentences = JSON.parse(localStorage.getItem("ownsentences")) || [];
 
@@ -36,5 +37,6 @@ function switchPage() {
   localStorage.setItem("fromAddSentences", "true");
   window.location.href = "fill-in-the-blank.html";
 }
+
 
 

@@ -1,3 +1,4 @@
+
 //ladataaan omat lauseet local storagesta
 let ownsentences = JSON.parse(localStorage.getItem("ownsentences")) || [];
 
@@ -105,3 +106,4 @@ window.onload = function() {
 function closeModal() {
   document.getElementById("gameModal").style.display = "none";
 }
+
