@@ -9,7 +9,7 @@ body {
   min-height: 100vh;
   
   /* Your wooden background */
-  background: url("../asets/Wooden-background-texture-pattern.jpg") no-repeat center center fixed;
+  background: url("../img/Wooden-background-texture-pattern.jpg") no-repeat center center fixed;
   background-size: cover;
   color: #f5efe6; /* light text color for contrast */
 }

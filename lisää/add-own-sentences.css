@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background: url("../asets/Wooden-background-texture-pattern.jpg") no-repeat center center fixed;
+  background: url("../img/Wooden-background-texture-pattern.jpg") no-repeat center center fixed;
   background-size: cover;
   color: #f5efe6;
 }

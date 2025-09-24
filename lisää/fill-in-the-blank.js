@@ -50,8 +50,27 @@ function checkAnswer() {
     document.getElementById("output2").textContent = "Correct!";
     showAnswer();
 
-    usedsentences.push(theword); 
-    score++;
+    
+  } else {
+    document.getElementById("output2").textContent = "Try again!";
+    firstTry = false;
+  }
+  //annetaan käyttäjälle valinta näyttää vastaus
+  let element = document.getElementById("vastaus");
+  element.classList.remove("hidden");
+}
+
+//functio joka näyttää vastauksen
+function showAnswer() {
+  document.getElementById("input").textContent = theword;
+  nextSentence();
+}
+
+function nextSentence() {
+  usedsentences.push(theword); 
+    if (firstTry) {
+      score++;
+    }
   
     setTimeout(() => {
       document.getElementById("output2").textContent = "";
@@ -59,19 +78,7 @@ function checkAnswer() {
       document.getElementById("userInput").value = "";
       updateText();
     }, 3000);
-  } else {
-    document.getElementById("output2").textContent = "Try again!";
-  }
-  //annetaan käyttäjälle valinta näyttää vastaus
-  let element = document.getElementById("test");
-  element.classList.remove("test");
 }
-
-//functio joka näyttää vastauksen
-function showAnswer() {
-  document.getElementById("input").textContent = theword;
-}
-
 //functio joka resetoi omat lauseet
 function resetOwnSentences() {
   ownsentences = [];
