@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Input Example</title>
+  <link rel="stylesheet" href="fill-in-the-blank.css" />
+</head>
+
+<body>
+  <div class="game-box">
+    <div style="text-align:center; margin-top:28px;">
+      <button id="addOwnBtn" onclick="switchPage()">lisää omat lauseet</button>
+    </div>
+
+    <h2></h2>
+
+    <!-- näytetään sana ilman apu verbejä -->
+    <p id="output"></p>
+
+    <input type="text" id="userInput" placeholder="Type something..." />
+    <button onclick="checkAnswer()">Vastaa</button> 
+    <button onclick="showAnswer()" class="hidden" id="vastaus">Näytä vastaus</button>
+    
+    <p id="output2"></p>
+    <p id="input"></p>
+  </div>
+
+  <!-- annetaan käyttäjälle popup ilmoitus miten peli toimii-->
+  <div id="gameModal">
+    <div>
+      <h2>Tervetuloaa Täydennä puuttuva sana peliin!</h2>
+      <p>Sinun pitää täydentää tyhjät sanat jotka on apuverbit englanniksi.</p>
+      <p>Voit myös lisätä omia lauseita painamalla "lisää omat lauseet" nappia.</p>
+      <p>Jos vastauksessa on enemmän kuin yksi sana laita pilkku vastauksien väliin (vastaus1, vastuas2)</p>
+      <button onclick="closeModal()">Aloita peli</button>
+      <button onclick="switchPage()">Lisää omat lauseet</button>
+    </div>
+  </div>
+
+  <script src="fill-in-the-blank.js"></script>
+</body>
+
+</html>
