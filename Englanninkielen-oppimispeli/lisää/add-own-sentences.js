@@ -1,11 +1,9 @@
 
-// Load custom sentences from localStorage
 let ownsentences = JSON.parse(localStorage.getItem("ownsentences")) || [];
 
-// Regex for auxiliary verbs
 const regex = /\bisn't\b|\baren't\b|\bis\b|\bare\b|\bthere\b|\bnot\b/gi;
 
-// Add a new input field
+// lisätään uusi input kenttä
 function addInput() {
   const container = document.getElementById("inputsContainer");
   const input = document.createElement("input");
@@ -16,27 +14,34 @@ function addInput() {
   container.appendChild(input);
 }
 
-// When "Valmis" is clicked, collect all inputs and add valid sentences
+// funktio joka tallentaa lauseet ja siirtyy täydennys peliin
 function switchPage() {
   const inputs = document.querySelectorAll(".userInput");
-  let added = false;
+  let allValid = true; // Oletetaan aluksi, että kaikki kentät ovat kunnossa
+
   inputs.forEach(input => {
     const value = input.value.trim();
-    if (value.length > 0) {
-      if (!value.match(regex)) {
-        // Skip invalid sentences
-        return;
-      }
-      ownsentences.push(value);
-      added = true;
+    if (value.length === 0 || !value.match(regex)) {
+      allValid = false; // Jos kenttä on tyhjä tai ei vastaa regexiä
     }
   });
-  if (added) {
-    localStorage.setItem("ownsentences", JSON.stringify(ownsentences));
+
+  if (!allValid) {
+    alert("Lauseessa täytyy olla ainakin yksi sana: is, isn't, are, aren't, there tai not.");
+    return; // Estää siirtymisen toiselle sivulle
   }
+
+  // Jos kaikki kentät ovat kunnossa, tallennetaan ja siirrytään eteenpäin
+  const ownsentences = [];
+  inputs.forEach(input => {
+    ownsentences.push(input.value.trim());
+  });
+
+  localStorage.setItem("ownsentences", JSON.stringify(ownsentences));
   localStorage.setItem("fromAddSentences", "true");
   window.location.href = "fill-in-the-blank.html";
 }
+
 
 
 
