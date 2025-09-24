@@ -1,3 +1,4 @@
+
 let ownsentences = JSON.parse(localStorage.getItem("ownsentences")) || [];
 
 const regex = /\bisn't\b|\baren't\b|\bis\b|\bare\b|\bthere\b|\bnot\b/gi;
@@ -40,6 +41,7 @@ function switchPage() {
   localStorage.setItem("fromAddSentences", "true");
   window.location.href = "fill-in-the-blank.html";
 }
+
 
 
 
