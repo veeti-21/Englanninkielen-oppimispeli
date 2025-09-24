@@ -6,20 +6,25 @@
   <title>User Input Example</title>
   <link rel="stylesheet" href="fill-in-the-blank.css" />
 </head>
+
 <body>
-  <h2></h2>
-  <!-- väli aikanen vaihtaa add-own-sentemces sivustolle -->
-  <button onclick="switchPage()">lisää omat lauseet</button>
+  <div class="game-box">
+    <div style="text-align:center; margin-top:28px;">
+      <button id="addOwnBtn" onclick="switchPage()">lisää omat lauseet</button>
+    </div>
 
-  <!-- näytetään sana ilman apu verbejä -->
-  <p id="output"></p>
+    <h2></h2>
 
-  <input type="text" id="userInput2" placeholder="Type something..." />
-  <button onclick="checkAnswer()">Vastaa</button> 
-  <button onclick="showAnswer()" class="test" id="test">Näytä vastaus</button>
-  
-  <p id="output2"></p>
-  <p id="input"></p>
+    <!-- näytetään sana ilman apu verbejä -->
+    <p id="output"></p>
+
+    <input type="text" id="userInput" placeholder="Type something..." />
+    <button onclick="checkAnswer()">Vastaa</button> 
+    <button onclick="showAnswer()" class="hidden" id="vastaus">Näytä vastaus</button>
+    
+    <p id="output2"></p>
+    <p id="input"></p>
+  </div>
 
   <!-- annetaan käyttäjälle popup ilmoitus miten peli toimii-->
   <div id="gameModal">
@@ -35,4 +40,5 @@
 
   <script src="fill-in-the-blank.js"></script>
 </body>
+
 </html>

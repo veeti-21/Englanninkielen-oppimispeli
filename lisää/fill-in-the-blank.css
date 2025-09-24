@@ -1,45 +1,172 @@
-.test {
+/* Base + background */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  
+  /* Your wooden background */
+  background: url("../asets/Wooden-background-texture-pattern.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #f5efe6; /* light text color for contrast */
+}
+
+.hidden {
   display: none;
 }
 
-/* Modal overlay */
+/* Add-own button outside the box */
+#addOwnBtn {
+  position: absolute;
+  top: -22px;
+  left: -22px;
+  margin: 0;
+  padding: 0.6em 1.2em;
+  border-radius: 24px;
+  border: 3px solid #3b2a22; /* Darker border */
+  background: #3b2a22;
+  color: #f5efe6;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+
+/* The game card / main box */
+.game-box {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);  /* transparent black */
+  border-radius: 18px;
+  padding: 26px 28px;
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  margin: 10vh 0 50px;    /* Move box further down */
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.8),
+    inset 0 -6px 18px rgba(0,0,0,0.3);
+  border: 8px solid #3b2a22;  /* deep brown wood-tone frame */
+  outline: 4px solid rgba(0,0,0,0.1);
+  color: #f5efe6;  /* text inside card */
+}
+
+/* Headers / titles inside card */
+.game-box h2 {
+  margin: 0 0 12px;
+  color: #d9c8b4;  /* slightly warm light tone */
+  font-size: 1.3rem;
+}
+
+/* The sentence output (blank etc.) */
+#output {
+  font-size: 1.4rem;
+  color: #f0eada;  
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+/* Input field styling */
+.game-box input#userInput {
+  padding: 0.72em 0.8em;
+  width: 80%;
+  max-width: 520px;
+  border: 2px solid #4a2f22;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.15);  /* light but see-through so wood shows faintly */
+  color: #f5efe6;
+  font-size: 1rem;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+  margin-top: 10px;
+}
+
+/* Buttons inside the card */
+.game-box button {
+  margin: 0.6em 1em;
+  padding: 0.7em 1.3em;
+  border: none;
+  border-radius: 24px;
+  background: #5b3825;  /* dark wood-brown */
+  color: #f5efe6;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.game-box button:hover {
+  transform: translateY(-2px);
+  filter: brightness(0.9);
+}
+
+/* Disabled / 'test' button style (before used) */
+.game-box button.test, #test.test {
+  background: rgba(80,80,80,0.3);
+  color: #bbb;
+  border: 2px dashed rgba(100,80,70,0.5);
+}
+
+/* Output messages (correct / try again) */
+#output2 {
+  margin-top: 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  /* JS can change this color class-wise if you want, e.g. add class "correct" or "wrong" */
+  color: #aad4af;  /* greenish for success default or neutral */
+}
+
+/* Shown answer sentence */
+#input {
+  margin-top: 8px;
+  color: #c8b59a;  /* warm beige / light brown tone */
+  font-style: italic;
+}
+
+/* Modal overlay + content */
 #gameModal {
   display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.85);  /* darker overlay background */
   z-index: 1000;
 }
 
-
 #gameModal > div {
-  background: #fff;
+  background: rgba(20, 20, 20, 0.95);  /* almost black with slight transparency */
+  color: #f5efe6;
   max-width: 500px;
-  margin: 10% auto;
+  margin: 8% auto;
   padding: 2em;
-  border-radius: 8px;
+  border-radius: 14px;
   text-align: center;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.9);
+  border: 4px solid #3b2a22;
 }
 
 #gameModal h2 {
   margin-top: 0;
-  color: #2a4d8f;
+  color: #e0d4c3;
+  font-size: 1.4rem;
 }
 
 #gameModal button {
-  margin: 0.5em 1em;
-  padding: 0.5em 1.5em;
+  margin: 0.6em 1em;
+  padding: 0.6em 1.4em;
   border: none;
-  border-radius: 4px;
-  background: #2a4d8f;
-  color: #fff;
-  font-size: 1em;
+  border-radius: 6px;
+  background: #59351f; /* dark warm brown */
+  color: #f5efe6;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s ease, filter 0.2s ease;
 }
 
 #gameModal button:hover {
-  background: #1a2d5f;
+  background: #4a2f1a;
 }

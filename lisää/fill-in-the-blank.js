@@ -1,7 +1,7 @@
 //ladataaan omat lauseet local storagesta
 let ownsentences = JSON.parse(localStorage.getItem("ownsentences")) || [];
 
-let sentences = ["This book is very interesting.", "They aren't coming to the party.", "There is a cat on the roof.", "He isn't going to school today.", "We are happy with the results.", "She is not feeling well.", "There are many stars in the sky.", "It isn't easy to learn a new language.", "There are no cookies left in the jar.", "Isn't it a beautiful day?"];
+const sentences = ["This book is very interesting.", "They aren't coming to the party.", "There is a cat on the roof.", "He isn't going to school today.", "We are happy with the results.", "She is not feeling well.", "There are many stars in the sky.", "It isn't easy to learn a new language.", "There are no cookies left in the jar.", "Isn't it a beautiful day?"];
 let replacedWords = []; 
 let usedsentences = [];
 let theword = "";
@@ -41,7 +41,7 @@ function updateText() {
 //functio joka tarkistaa käyttäjän vastauksen
 function checkAnswer() {
   console.log(replacedWords); 
-  let text = document.getElementById("userInput2").value;
+  let text = document.getElementById("userInput").value;
 
   if (
     replacedWords.join(", ").toLowerCase() === text.toLowerCase() ||
@@ -56,9 +56,9 @@ function checkAnswer() {
     setTimeout(() => {
       document.getElementById("output2").textContent = "";
       document.getElementById("input").textContent = "";
-      document.getElementById("userInput2").value = "";
+      document.getElementById("userInput").value = "";
       updateText();
-    }, 1500);
+    }, 3000);
   } else {
     document.getElementById("output2").textContent = "Try again!";
   }
