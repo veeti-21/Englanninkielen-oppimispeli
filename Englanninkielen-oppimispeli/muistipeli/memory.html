@@ -3,17 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mäi</title>
-    <link rel="stylesheet" href="../main.css">
-        <header class="main-header" >
-        <div class="container">
-            <a href="../etusivu/index.html" class="logo">
-                <img src = "../img/logo.png" alt="Front page button logo" height = "192" width = "216">
-            </a>
-        </div>
-    </header>
+    <title>Muistipeli</title>
+    <style>
+        body {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 23, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(120, 119, 23, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 119, 23, 0.3) 0%, transparent 50%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%235c3d1e"/><path d="M0 0L100 100" stroke="%234a2f15" stroke-width="1"/><path d="M100 0L0 100" stroke="%234a2f15" stroke-width="1"/></svg>');
+            background-color: #5c3d1e;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #f5e8c8;
+        }
 
-    <style>   
+        .main-header {
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(44, 28, 12, 0.85);
+            border-bottom: 3px solid #8b6b3d;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #f5e8c8;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 5px rgba(245, 232, 200, 0.7));
+        }
 
         #grid {
             display: grid;
@@ -27,20 +66,68 @@
         .cell {
             width: 60px;
             height: 60px;
-            background-color: black;
-            color: white;
+            background: 
+                radial-gradient(circle at 30% 30%, #8b6b3d, #5c3d1e),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="%235c3d1e"/><path d="M0 0L20 20" stroke="%234a2f15" stroke-width="1"/><path d="M20 0L0 20" stroke="%234a2f15" stroke-width="1"/></svg>');
+            color: #f5e8c8;
             border-radius: 10px;
             text-align: center;
             overflow-wrap: break-word;
-            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid #b89454;
         }
 
+        .cell:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.5),
+                0 6px 12px rgba(0, 0, 0, 0.4);
+        }
 
+        .cell.matched {
+            background: radial-gradient(circle at 70% 30%, #a8d18d, #7bb661);
+            color: #2c4a1c;
+            transform: scale(0.95);
+            border: 2px solid #7bb661;
+            cursor: default;
+        }
 
+        #main {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f5e8c8;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="../etusivu/index.html" class="logo">
+                <div style="width: 50px; height: 50px; background: #b89454; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                    <span style="color: #5c3d1e; font-weight: bold; font-size: 24px;">M</span>
+                </div>
+                <span>Muistipeli</span>
+            </a>
+        </div>
+    </header>
 
+    <div id="grid"></div>
+
+    <div id="main"></div>
+    
 <body>
     
 
