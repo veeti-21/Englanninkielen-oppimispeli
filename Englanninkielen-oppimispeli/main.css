@@ -256,3 +256,7 @@ body {
 .color-gray {
   background-color: #797979;
 }
+
+html {
+  scroll-behavior: smooth;
+}

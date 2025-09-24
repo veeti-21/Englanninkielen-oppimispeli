@@ -1,49 +1,68 @@
 <!DOCTYPE html>
-<html lang = "en">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Englanninkielen oppimispeli</title>
-    <link rel="stylesheet" href="../main.css">
-    <header class="main-header" >
-        <div class="container">
-            <a href = "index.html" class="logo">
-                <img src="../img/logo.png" alt="Front page button logo" height = "192" width = "216">
-            </a>
-            <!--
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="Etusivu.html">Etusivu</a></li>
-                    <li><a href="https://taitaja2025.fi/fi/aikataulu/">Aikataulu</a></li>
-                    <li><a href="taulukko1.php">Tulostaulukko</a></li>
-                </ul>
-                <div class="language-dropdown"> 
-                    <button class="dropdown-toggle">
-                        <span class="flag-icon fi"></span> FI <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="Etusivu.html" class="lang-option"><span class="flag-icon fi"></span> Suomi</a>
-                        <a href="EtusivuEN.html" class="lang-option"><span class="flag-icon en"></span> Englanti</a>
-                        <a href="EtusivuSV.html" class="lang-option"><span class="flag-icon sv"></span> Ruotsi</a>
-                    </div>
-                </div>
-            </nav>
-            -->
-        </div>
-    </header>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Englanninkielen oppimispeli</title>
+  <link rel="stylesheet" href="../main.css">
 </head>
 
 <body>
-    <div class = "info" >
-        <a href = "../muistipeli/memory.html" class="cta-button stage" >Muistipeli </a>
-        <a href = "../muistipeli/memory.html" class="cta-button stage" >Muistipeli </a>
-        <a href = "../muistipeli/memory.html" class="cta-button stage" >Muistipeli </a>
-        <a href = "../muistipeli/memory.html" class="cta-button stage" >Muistipeli </a>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="../img/eduko.svg" alt="Front page button logo" height="192" width="216">
+      </a>
     </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Englanninkielen oppimispeli</h1>
+    <p>Tervetuloa harjoittelemaan englannin kieltä hauskojen ja vuorovaikutteisten pelien avulla!</p>
+    <a href="#info" class="cta-button">Aloita pelaaminen</a>
+  </section>
+
+  <!-- Info / Stages Section -->
+  <section id = "info" class="info">
+    <p>Valitse pelimuoto ja lähde oppimaan:</p>
+    <div class="stages">
+      <div class="stage">
+        <h3>Muistipeli</h3>
+        <p>Harjoittele sanastoa pelaamalla muistipeliä.</p>
+        <a href="../muistipeli/memory.html" class="cta-button">Pelaa</a>
+      </div>
+      <div class="stage">
+        <h3>Sanapeli</h3>
+        <p>Kokeile taitojasi yhdistämällä sanoja ja merkityksiä.</p>
+        <a href="#" class="cta-button">Tulossa pian</a>
+      </div>
+      <div class="stage">
+        <h3>Kysymykset</h3>
+        <p>Testaa osaamistasi monivalintakysymyksillä.</p>
+        <a href="#" class="cta-button">Tulossa pian</a>
+      </div>
+      <div class="stage">
+        <h3>Kuunteluharjoitus</h3>
+        <p>Harjoittele kuullun ymmärtämistä englanniksi.</p>
+        <a href="#" class="cta-button">Tulossa pian</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <p>&copy; 2025 Englanninkielen oppimispeli</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  
 </body>
-
-
-
 </html>
