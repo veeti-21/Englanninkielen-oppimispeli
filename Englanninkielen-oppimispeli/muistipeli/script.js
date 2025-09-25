@@ -50,7 +50,7 @@ cards.forEach((card, idx) => {
         flipped = [];
 
         if (matchedCount === cards.length) {
-          main.innerText = "you win";
+          main.innerText = "voitit";
         }
       } else {
         lockBoard = true;
