@@ -1,0 +1,23 @@
+body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #targetWord {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    #output, #feedback {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    #feedback {
+      font-size: 1.5rem;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }

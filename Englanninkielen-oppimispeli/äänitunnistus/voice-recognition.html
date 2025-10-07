@@ -8,15 +8,15 @@
 </head>
 
 <body>
-  <div class="card">
-    <div id="inputsContainer">
-      <input type="text" id="userInput" placeholder="Type something..." />
-    </div>
-    
-    <div id="output"></div>
+  <h1>🎙️ Pronunciation Game</h1>
+  <div id="targetWord">Press "New Word"!</div>
+  <input type="text" id="userInput" readonly />
+  <div id="output"></div>
+  <div id="feedback"></div>
 
-    <button id="startRecognition">Start Voice Recognition</button>
-    <button id="stopRecognition">Stop Voice Recognition</button>
+  <button onclick="setNewWord()">New Word</button>
+  <button onclick="startRecognition()">Start</button>
+  <button onclick="stopRecognition()">Stop</button>
 
   <script src="voice-recognition.js"></script>
 </body>

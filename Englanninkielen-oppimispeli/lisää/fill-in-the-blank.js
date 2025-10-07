@@ -27,7 +27,7 @@ function updateText() {
   if (available.length === 0) {
     let element = document.getElementById("addOwnBtn");
     element.classList.remove("hidden");
-    let element1 = document.getElementById("showModel");
+    let element1 = document.getElementById("vastaus");
     element1.classList.remove("hidden");
     document.getElementById("output").textContent = "Voitit sait " + score + " pistettä!";
     return;

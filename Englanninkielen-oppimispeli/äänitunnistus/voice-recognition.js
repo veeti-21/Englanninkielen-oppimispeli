@@ -1,43 +1,70 @@
-// voice-recognition.js
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
 
-const recognition = new SpeechRecognition();
-recognition.continuous = true; // keep listening until stopped
-recognition.interimResults = true; // show results while speaking
-recognition.lang = "en-US"; // language
+    const userInput = document.getElementById("userInput");
+    const output = document.getElementById("output");
+    const feedback = document.getElementById("feedback");
+    const targetWordEl = document.getElementById("targetWord");
 
-const startBtn = document.getElementById("startRecognition");
-const stopBtn = document.getElementById("stopRecognition");
-const userInput = document.getElementById("userInput");
-const output = document.getElementById("output");
+    const words = [
+      "apple",
+      "banana",
+      "hello world",
+      "good morning",
+      "open the door",
+      "I love programming",
+      "thank you very much"
+    ];
 
-// Start recognition
-startBtn.addEventListener("click", () => {
-recognition.start();
-output.textContent = "Listening...";
-});
+    let currentTarget = "";
 
-// Stop recognition
-stopBtn.addEventListener("click", () => {
-recognition.stop();
-output.textContent = "Stopped listening.";
-});
-//test
-// Capture results
-recognition.addEventListener("result", (event) => {
-let transcript = "";
-for (let i = event.resultIndex; i < event.results.length; i++) {
-  transcript += event.results[i][0].transcript;
-}
-if (transcript.trim().length === "test") {
-    transcript = "test132";
-}
+    function setNewWord() {
+      const randomIndex = Math.floor(Math.random() * words.length);
+      currentTarget = words[randomIndex];
+      targetWordEl.textContent = currentTarget;
+      feedback.textContent = "";
+      output.textContent = "";
+      userInput.value = "";
+    }
 
-// Update text input
-userInput.value = transcript;
-output.textContent = `You said: ${transcript}`;
-});
+    function startRecognition() {
+      if (!currentTarget) {
+        feedback.textContent = "Press 'New Word' first!";
+        return;
+      }
+      recognition.start();
+      output.textContent = "🎤 Listening...";
+    }
 
-// Handle errors
-recognition.addEventListener("error", (event) => {
-output.textContent = `Error: ${event.error}`;
-});
+    function stopRecognition() {
+      recognition.stop();
+      output.textContent = "🛑 Stopped listening.";
+    }
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript.trim().toLowerCase();
+      userInput.value = transcript;
+      output.textContent = `You said: "${transcript}"`;
+      checkPronunciation(transcript);
+    };
+
+    recognition.onerror = (event) => {
+      output.textContent = `Error: ${event.error}`;
+    };
+
+    function checkPronunciation(spoken) {
+      const target = currentTarget.toLowerCase();
+      if (spoken === target) {
+        feedback.textContent = "✅ Perfect!";
+        feedback.style.color = "green";
+      } else if (spoken.includes(target) || target.includes(spoken)) {
+        feedback.textContent = "🟡 Almost!";
+        feedback.style.color = "orange";
+      } else {
+        feedback.textContent = "❌ Try again!";
+        feedback.style.color = "red";
+      }
+    }
