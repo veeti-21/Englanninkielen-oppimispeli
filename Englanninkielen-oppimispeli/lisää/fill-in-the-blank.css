@@ -1,173 +1,135 @@
-
-/* Base + background */
+/* General page background */
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  
-  /* Your wooden background */
-  background: url("../img/Wooden-background-texture-pattern.jpg") no-repeat center center fixed;
-  background-size: cover;
-  color: #f5efe6; /* light text color for contrast */
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(120, 119, 23, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(120, 119, 23, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(120, 119, 23, 0.3) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%235c3d1e"/><path d="M0 0L100 100" stroke="%234a2f15" stroke-width="1"/><path d="M100 0L0 100" stroke="%234a2f15" stroke-width="1"/></svg>');
+    background-color: #5c3d1e;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f5e8c8;
+    font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
-.hidden {
-  display: none;
-}
-
-/* Add-own button outside the box */
-#addOwnBtn {
-  position: absolute;
-  top: -22px;
-  left: -22px;
-  margin: 0;
-  padding: 0.6em 1.2em;
-  border-radius: 24px;
-  border: 3px solid #3b2a22; /* Darker border */
-  background: #3b2a22;
-  color: #f5efe6;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease, filter 0.15s ease;
-  z-index: 2;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-}
-
-
-/* The game card / main box */
+/* Game container */
 .game-box {
-  position: relative;
-  background: rgba(0, 0, 0, 0.7);  /* transparent black */
-  border-radius: 18px;
-  padding: 26px 28px;
-  max-width: 720px;
-  width: 100%;
-  text-align: center;
-  margin: 10vh 0 50px;    /* Move box further down */
-  box-shadow:
-    0 18px 40px rgba(0,0,0,0.8),
-    inset 0 -6px 18px rgba(0,0,0,0.3);
-  border: 8px solid #3b2a22;  /* deep brown wood-tone frame */
-  outline: 4px solid rgba(0,0,0,0.1);
-  color: #f5efe6;  /* text inside card */
+    background: rgba(44, 28, 12, 0.85);
+    border: 2px solid #8b6b3d;
+    border-radius: 15px;
+    padding: 25px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    margin-top: 40px;
 }
 
-/* Headers / titles inside card */
+/* Titles */
 .game-box h2 {
-  margin: 0 0 12px;
-  color: #d9c8b4;  /* slightly warm light tone */
-  font-size: 1.3rem;
+    font-size: 1.8rem;
+    color: #f5e8c8;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
 }
 
-/* The sentence output (blank etc.) */
-#output {
-  font-size: 1.4rem;
-  color: #f0eada;  
-  margin: 20px 0;
-  line-height: 1.5;
+/* Output text */
+#output, #output2, #input {
+    font-size: 1.2rem;
+    margin: 15px 0;
 }
 
-/* Input field styling */
-.game-box input#userInput {
-  padding: 0.72em 0.8em;
-  width: 80%;
-  max-width: 520px;
-  border: 2px solid #4a2f22;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.15);  /* light but see-through so wood shows faintly */
-  color: #f5efe6;
-  font-size: 1rem;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
-  margin-top: 10px;
+/* Input field */
+#userInput {
+    padding: 10px 14px;
+    font-size: 1rem;
+    border: 2px solid #b89454;
+    border-radius: 10px;
+    background: #3b2813;
+    color: #f5e8c8;
+    outline: none;
+    margin-bottom: 12px;
+}
+#userInput::placeholder {
+    color: #c7b893;
+    opacity: 0.8;
 }
 
-/* Buttons inside the card */
-.game-box button {
-  margin: 0.6em 1em;
-  padding: 0.7em 1.3em;
-  border: none;
-  border-radius: 24px;
-  background: #5b3825;  /* dark wood-brown */
-  color: #f5efe6;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease, filter 0.15s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+/* Buttons */
+button {
+    background: radial-gradient(circle at 30% 30%, #8b6b3d, #5c3d1e);
+    border: 2px solid #b89454;
+    color: #f5e8c8;
+    padding: 10px 18px;
+    margin: 8px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 
+        inset 0 0 6px rgba(0,0,0,0.4),
+        0 4px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+}
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.5),
+        0 6px 12px rgba(0,0,0,0.4);
+}
+button.hidden {
+    display: none;
 }
 
-.game-box button:hover {
-  transform: translateY(-2px);
-  filter: brightness(0.9);
-}
-
-/* Disabled / 'test' button style (before used) */
-.game-box button.test, #test.test {
-  background: rgba(80,80,80,0.3);
-  color: #bbb;
-  border: 2px dashed rgba(100,80,70,0.5);
-}
-
-/* Output messages (correct / try again) */
-#output2 {
-  margin-top: 14px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  /* JS can change this color class-wise if you want, e.g. add class "correct" or "wrong" */
-  color: #aad4af;  /* greenish for success default or neutral */
-}
-
-/* Shown answer sentence */
-#input {
-  margin-top: 8px;
-  color: #c8b59a;  /* warm beige / light brown tone */
-  font-style: italic;
-}
-
-/* Modal overlay + content */
+/* Modal backdrop */
 #gameModal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.85);  /* darker overlay background */
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;  /* horizontal centering */
+    align-items: center;      /* vertical centering */
+    z-index: 10;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
+/* Modal content */
 #gameModal > div {
-  background: rgba(20, 20, 20, 0.95);  /* almost black with slight transparency */
-  color: #f5efe6;
-  max-width: 500px;
-  margin: 8% auto;
-  padding: 2em;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 6px 30px rgba(0,0,0,0.9);
-  border: 4px solid #3b2a22;
+    background: rgba(44, 28, 12, 0.95);
+    border: 2px solid #8b6b3d;
+    border-radius: 15px;
+    padding: 30px;
+    width: auto;
+    max-width: 500px;
+    min-width: 280px; /* keeps it from collapsing too much */
+    margin: auto;     /* ensures no left offset */
+    color: #f5e8c8;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 #gameModal h2 {
-  margin-top: 0;
-  color: #e0d4c3;
-  font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    color: #f5e8c8;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
-
-#gameModal button {
-  margin: 0.6em 1em;
-  padding: 0.6em 1.4em;
-  border: none;
-  border-radius: 6px;
-  background: #59351f; /* dark warm brown */
-  color: #f5efe6;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease, filter 0.2s ease;
-}
-
-#gameModal button:hover {
-  background: #4a2f1a;
+#gameModal p {
+    margin: 10px 0;
+    font-size: 1rem;
 }

@@ -25,6 +25,10 @@ function updateText() {
     ? ownsentences.filter(s => !usedsentences.includes(s)) : sentences.filter(s => !usedsentences.includes(s));
     
   if (available.length === 0) {
+    let element = document.getElementById("addOwnBtn");
+    element.classList.remove("hidden");
+    let element1 = document.getElementById("showModel");
+    element1.classList.remove("hidden");
     document.getElementById("output").textContent = "Voitit sait " + score + " pistettä!";
     return;
   }
@@ -93,15 +97,19 @@ window.onload = function() {
 
   if (window.location.pathname.endsWith("fill-in-the-blank.html")) {
     if (localStorage.getItem("fromAddSentences") === "true") {
-      localStorage.removeItem("fromAddSentences");
     } else {
       resetOwnSentences(); 
       updateText();
+      showModel
       document.getElementById("gameModal").style.display = "block";
     }
   }
 }
 
+function showModel() {
+  resetOwnSentences();
+  document.getElementById("gameModal").style.display = "block";
+}
 //functio joka sulkee popup ilmoituksen
 function closeModal() {
   document.getElementById("gameModal").style.display = "none";
