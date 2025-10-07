@@ -30,7 +30,7 @@ gridContainer.style.gridTemplateColumns = `repeat(${size}, 30px)`;
 let selectedCells = [];
 
 
-
+// ------------------ NAPIT ------------------
 function selectCell(cell) {
   if (cell.classList.contains("found")) return;
   if (cell.classList.contains("selected")) {
@@ -60,7 +60,6 @@ function restartGame() {
   document.getElementById("message").textContent = "";
 }
 
-// ------------------ NAPIT ------------------
 document.getElementById("reset").addEventListener("click", () => {
   selectedCells.forEach(c => c.classList.remove("selected"));
   selectedCells = [];
@@ -112,6 +111,7 @@ document.getElementById("confirm").addEventListener("click", () => {
   updateWordList();
 });
 // ------------------ NAPIT ------------------ 
+
 
 // ------------------ PELIN ALOTUS FUNKTIOT ------------------
 function createEmptyGrid() {
