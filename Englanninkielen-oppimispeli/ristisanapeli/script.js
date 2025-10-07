@@ -1,6 +1,7 @@
 const size = 14;
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const words = ["ONE", "two", "three"];
+const words = ["123", "456", "789"];
+let placedWords = []; 
 
 let sanat = [];
 for(let i = 0; i < words.length; i++){
@@ -21,43 +22,172 @@ for (let i = 0; i < size; i++) {
   grid.push(row);
 }
 
-function insertWords(){
-  for(let i = 0; i < sanat.length; i++){
-    const word = sanat[i];
-    let placed = false;
-    let attempts = 0;
 
-    while(!placed && attempts < 1000) {
-      const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
-      const row = Math.floor(Math.random() * size);
-      const col = Math.floor(Math.random() * size);
-
-      if(direction === 'horizontal') {
-        if(col + word.length <= size) {
-          for(let j = 0; j < word.length; j++) {
-            grid[row][col + j] = word[j];
-          }
-          placed = true;
-        }
-      } else {
-        if(row + word.length <= size) {
-          for(let j = 0; j < word.length; j++) {
-            grid[row + j][col] = word[j];
-          }
-          placed = true;
-        }
-      }
-      attempts++;
-    }
-  }
-}
-insertWords();
 
 const gridContainer = document.getElementById("grid");
 gridContainer.style.gridTemplateColumns = `repeat(${size}, 30px)`;
 
 let selectedCells = [];
 
+
+
+function selectCell(cell) {
+  if (cell.classList.contains("found")) return;
+  if (cell.classList.contains("selected")) {
+    cell.classList.remove("selected");
+    selectedCells = selectedCells.filter(c => c !== cell);
+  } else {
+    cell.classList.add("selected");
+    selectedCells.push(cell);
+  }
+}
+
+
+function resetSelection(){
+  selectedCells.forEach(c => c.classList.remove("selected"));
+  selectedCells = [];
+  document.getElementById("message").textContent = "";
+}
+
+function restartGame() {
+  resetSelection();
+  sanat = words.map(w => w.toUpperCase());
+  createEmptyGrid();
+  insertWords();
+  fillEmptySpaces();
+  renderGrid();
+  updateWordList();
+  document.getElementById("message").textContent = "";
+}
+
+// ------------------ NAPIT ------------------
+document.getElementById("reset").addEventListener("click", () => {
+  selectedCells.forEach(c => c.classList.remove("selected"));
+  selectedCells = [];
+  document.getElementById("message").textContent = "";
+});
+
+document.getElementById("restart").addEventListener("click", () => {
+  restartGame();
+});
+
+document.getElementById("confirm").addEventListener("click", () => {
+  const message = document.getElementById("message");
+
+  if (selectedCells.length === 0) {
+    message.textContent = "❗ Please select some cells.";
+    return;
+  }
+
+  // Collect selected positions
+  const selectedPositions = selectedCells.map(c => ({
+    row: parseInt(c.dataset.row),
+    col: parseInt(c.dataset.col)
+  }));
+
+  // Check against stored placements
+  const foundWord = placedWords.find(pw =>
+    pw.cells.length === selectedPositions.length &&
+    pw.cells.every((cell, idx) =>
+      cell.row === selectedPositions[idx].row &&
+      cell.col === selectedPositions[idx].col
+    )
+  );
+
+  if (foundWord) {
+    message.textContent = `✅ Correct! You found "${foundWord.word}"!`;
+    selectedCells.forEach(c => {
+      c.classList.remove("selected");
+      c.classList.add("found");
+    });
+
+    sanat = sanat.filter(w => w !== foundWord.word);
+    placedWords = placedWords.filter(pw => pw.word !== foundWord.word);
+    resetSelection();
+  } else {
+    message.textContent = "❌ Selection does not match any placed word.";
+    resetSelection();
+  }
+
+  updateWordList();
+});
+// ------------------ NAPIT ------------------ 
+
+// ------------------ PELIN ALOTUS FUNKTIOT ------------------
+function createEmptyGrid() {
+  grid = [];
+  for (let i = 0; i < size; i++) {
+    let row = [];
+    for (let j = 0; j < size; j++) {
+      row.push("."); // placeholder for empty cell
+    }
+    grid.push(row);
+  }
+}
+function insertWords() {
+  placedWords = []; // clear previous placements
+
+  for (let i = 0; i < sanat.length; i++) {
+    const word = sanat[i];
+    let placed = false;
+    let attempts = 0;
+
+    while (!placed && attempts < 1000) {
+      const direction = Math.random() > 0.5 ? "horizontal" : "vertical";
+      const row = Math.floor(Math.random() * size);
+      const col = Math.floor(Math.random() * size);
+
+      let canPlace = true;
+      let cells = [];
+
+      if (direction === "horizontal") {
+        if (col + word.length <= size) {
+          for (let j = 0; j < word.length; j++) {
+            if (grid[row][col + j] !== "." && grid[row][col + j] !== word[j]) {
+              canPlace = false;
+              break;
+            }
+          }
+          if (canPlace) {
+            for (let j = 0; j < word.length; j++) {
+              grid[row][col + j] = word[j];
+              cells.push({ row: row, col: col + j });
+            }
+            placedWords.push({ word: word, cells: cells });
+            placed = true;
+          }
+        }
+      } else { // vertical
+        if (row + word.length <= size) {
+          for (let j = 0; j < word.length; j++) {
+            if (grid[row + j][col] !== "." && grid[row + j][col] !== word[j]) {
+              canPlace = false;
+              break;
+            }
+          }
+          if (canPlace) {
+            for (let j = 0; j < word.length; j++) {
+              grid[row + j][col] = word[j];
+              cells.push({ row: row + j, col: col });
+            }
+            placedWords.push({ word: word, cells: cells });
+            placed = true;
+          }
+        }
+      }
+      attempts++;
+    }
+  }
+}
+function fillEmptySpaces() {
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      if (grid[i][j] === ".") {
+        grid[i][j] = letters[Math.floor(Math.random() * letters.length)];
+      }
+    }
+  }
+}
 function renderGrid() {
   gridContainer.innerHTML = "";
   for (let i = 0; i < size; i++) {
@@ -72,48 +202,16 @@ function renderGrid() {
     }
   }
 }
-
-function selectCell(cell) {
-  if (cell.classList.contains("found")) return;
-  if (cell.classList.contains("selected")) {
-    cell.classList.remove("selected");
-    selectedCells = selectedCells.filter(c => c !== cell);
-  } else {
-    cell.classList.add("selected");
-    selectedCells.push(cell);
-  }
-}
-
-document.getElementById("confirm").addEventListener("click", () => {
-  const selectedWord = selectedCells.map(c => c.textContent).join("");
-  const message = document.getElementById("message");
-
-  if (sanat.includes(selectedWord)) {
-    message.textContent = `✅ Correct! You found "${selectedWord}"!`;
-    selectedCells.forEach(c => {
-      c.classList.remove("selected");
-      c.classList.add("found");
-    });
-    sanat = sanat.filter(w => w !== selectedWord);
-  } else {
-    message.textContent = `❌ "${selectedWord}" is not in the list.`;
-    selectedCells.forEach(c => c.classList.remove("selected"));
-  }
-
-  selectedCells = [];
-  updateWordList();
-});
-
-document.getElementById("reset").addEventListener("click", () => {
-  selectedCells.forEach(c => c.classList.remove("selected"));
-  selectedCells = [];
-  document.getElementById("message").textContent = "";
-});
-
 function updateWordList() {
   document.getElementById("wordList").textContent = sanat.join(", ");
 }
 
+
+createEmptyGrid();
+insertWords();
+fillEmptySpaces();
 renderGrid();
 updateWordList();
+// ------------------ PELIN ALOTUS FUNKTIOT ------------------
+
 
