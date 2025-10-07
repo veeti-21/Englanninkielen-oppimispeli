@@ -1,6 +1,8 @@
 const ekat  = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
 const tokat = ["yks", "kaks", "kolme", "neljä", "viis", "kuus", "seittemän", "kaheksa", "yheksä", "kymmene", "ykstoist", "kakstoist", "kolmetoist", "neljätoist", "viistoist", "kuustoist", "seittemäntoista", "kaheksantoist"];
 
+var ding = new Audio('../audio/ding.wav');
+
 let cards = [];
 for (let i = 0; i < ekat.length; i++) {
   cards.push({ value: ekat[i], pairIndex: i, type: "eka" });
@@ -48,9 +50,10 @@ cards.forEach((card, idx) => {
         second.cell.classList.add("matched");
         matchedCount += 2;
         flipped = [];
+        ding.play();
 
         if (matchedCount === cards.length) {
-          main.innerText = "voitit";
+          main.innerText = "you win";
         }
       } else {
         lockBoard = true;
