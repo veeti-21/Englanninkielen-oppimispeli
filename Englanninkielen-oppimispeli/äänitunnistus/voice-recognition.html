@@ -7,17 +7,18 @@
   <link rel="stylesheet" href="voice-recognition.css"/>
 </head>
 
-<body>
-  <h1>🎙️ Pronunciation Game</h1>
-  <div id="targetWord">Press "New Word"!</div>
-  <input type="text" id="userInput" readonly />
-  <div id="output"></div>
-  <div id="feedback"></div>
+<div class="game-box">
+    <h2>🎙️ Pronunciation Game</h2>
+    <div id="targetWord">Press "New Word"!</div>
+    <input type="text" id="userInput" readonly placeholder="Your speech will appear here..." />
+    <div id="output"></div>
+    <div id="feedback"></div>
 
-  <button onclick="setNewWord()">New Word</button>
-  <button onclick="startRecognition()">Start</button>
-  <button onclick="stopRecognition()">Stop</button>
-
+    <button onclick="setNewWord()">New Word</button>
+    <button onclick="startRecognition()">Start</button>
+    <button onclick="stopRecognition()">Stop</button>
+  </div>
+  
   <script src="voice-recognition.js"></script>
 </body>
 
