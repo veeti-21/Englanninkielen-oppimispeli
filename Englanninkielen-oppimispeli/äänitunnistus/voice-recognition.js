@@ -23,7 +23,7 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 
   // 🎵 Load audio files
   const correctSound = new Audio('../audio/ding.wav');
-  const wrongSound   = new Audio('../audio/wrong-answer.mp3');
+  const wrongSound   = new Audio('../audio/buzzer.mp3');
 
   // Adjust volume (0.0 = silent, 1.0 = full volume)
   correctSound.volume = 0.8;  // slightly lower than full
