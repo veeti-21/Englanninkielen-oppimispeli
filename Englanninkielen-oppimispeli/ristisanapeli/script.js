@@ -34,6 +34,11 @@ let selectedCells = [];
 
 
 // ------------------ NAPIT ------------------
+function resetSelection(){
+  selectedCells.forEach(c => c.classList.remove("selected"));
+  selectedCells = [];
+  document.getElementById("message").textContent = "";
+}
 function selectCell(cell) {
   if (cell.classList.contains("found")) return;
   if (cell.classList.contains("selected")) {
@@ -44,14 +49,6 @@ function selectCell(cell) {
     selectedCells.push(cell);
   }
 }
-
-
-function resetSelection(){
-  selectedCells.forEach(c => c.classList.remove("selected"));
-  selectedCells = [];
-  document.getElementById("message").textContent = "";
-}
-
 function restartGame() {
   resetSelection();
   sanat = words.map(w => w.toUpperCase());
@@ -62,6 +59,12 @@ function restartGame() {
   updateWordList();
   document.getElementById("message").textContent = "";
 }
+function info(){
+  window.alert("Paina kirjaimia kirjoitusjärjestyksessä, jotka muodostavat sanan, joka on listattu alla 'Words to find' osiossa.\n\nSitten kun kirjaimet on valikoitu, paina 'Confirm word' nappia ja sana muuttuu vihreäksi jos valikointi oli oikein.\n\n'Reset selection' napista keltaisena olevat valikoidut ruudut muuttuvat valitsemattomiksi\n\n'Restart game' nappi aloittaa pelin alusta  ");
+}
+document.getElementById("info").addEventListener("click", () => {
+  info();
+});
 
 document.getElementById("reset").addEventListener("click", () => {
   selectedCells.forEach(c => c.classList.remove("selected"));
@@ -235,7 +238,6 @@ function gameStatus(){
     return "";
   }
 }
-
 function a(a){
   if(a == "won"){
     window.alert("You win! \nClick ok to play again");
