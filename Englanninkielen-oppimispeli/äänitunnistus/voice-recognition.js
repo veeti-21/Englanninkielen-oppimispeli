@@ -23,11 +23,11 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 
   // 🎵 Load audio files
   const correctSound = new Audio('../audio/ding.wav');
-  const wrongSound   = new Audio('../audio/buzzer.mp3');
+  const wrongSound   = new Audio('../audio/wrong-answer.mp3');
 
   // Adjust volume (0.0 = silent, 1.0 = full volume)
   correctSound.volume = 0.8;  // slightly lower than full
-  wrongSound.volume = 0.2;    // make the wrong one quieter
+  wrongSound.volume = 0.05;    // make the wrong one quieter
 
   function setNewWord() {
     const randomIndex = Math.floor(Math.random() * words.length);
@@ -86,3 +86,6 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
     wrongSound.currentTime = 0;
     wrongSound.play();
   }
+  function closeModal() {
+  document.getElementById("gameModal").style.display = "none";
+}

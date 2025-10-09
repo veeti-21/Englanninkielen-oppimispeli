@@ -15,11 +15,29 @@
     <div id="feedback"></div>
 
     <button onclick="setNewWord()">New Word</button>
-    <button onclick="startRecognition()">Start</button>
-    <button onclick="stopRecognition()">Stop</button>
+    <button onclick="startRecognition()" id="onOffbtn">Start</button>
     <button onclick="testsound()">test</button>
   </div>
 
+   <div id="gameModal" class="gameModal">
+    <div>
+      <h2>Tervetuloaa peliin!</h2>
+      <p></p>
+      <p></p>
+      <p></p>
+      <button onclick="closeModal()">Aloita peli</button>
+    </div>
+  </div>
+
+  
+<!-- WIN MODAL -->
+<div id="winModal" class="gameModal" style="display: none;">
+  <div class="modal-content">
+    <h2 id="winTitle">🎉 You Won! 🎉</h2>
+    <p id="winText"></p>
+    <button onclick="restartGame()">Play Again</button>
+  </div>
+</div>
   <script src="voice-recognition.js"></script>
 </body>
 
