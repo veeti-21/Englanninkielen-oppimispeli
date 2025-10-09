@@ -30,9 +30,21 @@
   </div>
 
   <!-- annetaan käyttäjälle popup ilmoitus miten peli toimii-->
-  <div id="gameModal">
+  <div id="gameModal" class="gameModal">
     <div>
       <h2>Tervetuloaa Täydennä puuttuva sana peliin!</h2>
+      <p>Sinun pitää täydentää tyhjät sanat jotka on apuverbit englanniksi.</p>
+      <p>Voit myös lisätä omia lauseita painamalla "lisää omat lauseet" nappia.</p>
+      <p>Jos vastauksessa on enemmän kuin yksi sana laita pilkku vastauksien väliin (vastaus1, vastuas2)</p>
+      <button onclick="closeModal()">Aloita peli</button>
+      <button onclick="switchPage()">Lisää omat lauseet</button>
+    </div>
+  </div>
+
+  
+  <div id="winmodal" class="gameModal">
+    <div>
+      <h2>test</h2>
       <p>Sinun pitää täydentää tyhjät sanat jotka on apuverbit englanniksi.</p>
       <p>Voit myös lisätä omia lauseita painamalla "lisää omat lauseet" nappia.</p>
       <p>Jos vastauksessa on enemmän kuin yksi sana laita pilkku vastauksien väliin (vastaus1, vastuas2)</p>

@@ -38,6 +38,7 @@ function updateText() {
         
     if (score >= usedsentences.length / 2) {
     document.getElementById("output").textContent = "Voitit sait " + score + " pistettä!";
+    document.getElementById("winModal").style.display = "block";
     } else {
       document.getElementById("output").textContent = "Hävisit sait " + score + " pistettä!";
     }

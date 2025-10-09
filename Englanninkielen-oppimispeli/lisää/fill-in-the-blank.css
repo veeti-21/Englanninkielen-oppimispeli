@@ -86,7 +86,7 @@ button.hidden {
 }
 
 /* Modal backdrop */
-#gameModal {
+.gameModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -103,7 +103,7 @@ button.hidden {
 }
 
 /* Modal content */
-#gameModal > div {
+.gameModal > div {
     background: rgba(44, 28, 12, 0.95);
     border: 2px solid #8b6b3d;
     border-radius: 15px;
@@ -123,13 +123,13 @@ button.hidden {
     to { opacity: 1; transform: scale(1); }
 }
 
-#gameModal h2 {
+.gameModal h2 {
     margin-bottom: 15px;
     font-size: 1.6rem;
     color: #f5e8c8;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
-#gameModal p {
+.gameModal p {
     margin: 10px 0;
     font-size: 1rem;
 }
