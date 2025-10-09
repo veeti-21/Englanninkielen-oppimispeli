@@ -17,7 +17,7 @@
     <p id="output"></p>
 
     <input type="text" id="userInput" placeholder="Type something..." />
-    <button onclick="checkAnswer()">Vastaa</button> 
+    <button onclick="checkAnswer()"id="checkAnswer">Vastaa</button> 
     <button onclick="showAnswer()" class="hidden" id="vastaus">Näytä vastaus</button>
     
     <p id="output2"></p>
@@ -30,7 +30,7 @@
   </div>
 
   <!-- annetaan käyttäjälle popup ilmoitus miten peli toimii-->
-  <div id="gameModal">
+  <div id="gameModal" class="gameModal">
     <div>
       <h2>Tervetuloaa Täydennä puuttuva sana peliin!</h2>
       <p>Sinun pitää täydentää tyhjät sanat jotka on apuverbit englanniksi.</p>
@@ -40,6 +40,17 @@
       <button onclick="switchPage()">Lisää omat lauseet</button>
     </div>
   </div>
+
+  
+  <!-- WIN MODAL -->
+<div id="winModal" class="gameModal" style="display: none;">
+  <div class="modal-content">
+    <h2 id="winTitle">🎉 You Won! 🎉</h2>
+    <p id="winText"></p>
+    <button onclick="restartGame()">Play Again</button>
+  </div>
+</div>
+
 
   <script src="fill-in-the-blank.js"></script>
 </body>

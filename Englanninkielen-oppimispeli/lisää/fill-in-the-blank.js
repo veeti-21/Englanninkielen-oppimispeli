@@ -9,6 +9,12 @@ let theword = "";
 let score = 0;
 let firstTry = true;
 
+const correctSound = new Audio('../audio/ding.wav');
+const wrongSound   = new Audio('../audio/buzzer.mp3');
+
+correctSound.volume = 0.8;  
+wrongSound.volume = 0.15;    
+
 //fuctio joka vaihtaa sivua
 function switchPage() {
   window.location.href = "add-own-sentences.html";
@@ -25,13 +31,27 @@ function updateText() {
     ? ownsentences.filter(s => !usedsentences.includes(s)) : sentences.filter(s => !usedsentences.includes(s));
     
   if (available.length === 0) {
-    let element = document.getElementById("addOwnBtn");
-    element.classList.remove("hidden");
-    let element1 = document.getElementById("showModel");
-    element1.classList.remove("hidden");
-    document.getElementById("output").textContent = "Voitit sait " + score + " pistettä!";
-    return;
+  let element = document.getElementById("addOwnBtn");
+  element?.classList.remove("hidden");
+  let element1 = document.getElementById("showModel");
+  element1?.classList.remove("hidden");
+
+  const winTitle = document.getElementById("winTitle");
+  const winText = document.getElementById("winText");
+  const winModal = document.getElementById("winModal");
+
+  if (score >= usedsentences.length / 2) {
+    winTitle.textContent = "🎉 You Won! 🎉";
+    winText.textContent = `Voitit! Sait ${score} pistettä.`;
+  } else {
+    winTitle.textContent = "😢 You Lost 😢";
+    winText.textContent = `Hävisit. Sait ${score} pistettä.`;
   }
+
+  winModal.style.display = "flex";
+  return;
+}
+
 
   let text = available[getRandomInt(0, available.length - 1)];
   theword = text;
@@ -51,15 +71,20 @@ function checkAnswer() {
   if (
     replacedWords.join(", ").toLowerCase() === text.toLowerCase() ||
     replacedWords.join(",").toLowerCase() === text.toLowerCase()
-  ) { 
+  ) {
+    correctSound.currentTime = 0; 
+    correctSound.play(); 
     document.getElementById("output2").textContent = "Correct!";
     showAnswer();
 
     
   } else {
+    wrongSound.currentTime = 0; 
+    wrongSound.play();
     document.getElementById("output2").textContent = "Try again!";
     firstTry = false;
   }
+
   //annetaan käyttäjälle valinta näyttää vastaus
   let element = document.getElementById("vastaus");
   element.classList.remove("hidden");
@@ -78,40 +103,50 @@ function nextSentence() {
     }
   
     setTimeout(() => {
+      let element = document.getElementById("vastaus");
+      element.classList.add("hidden");
       document.getElementById("output2").textContent = "";
       document.getElementById("input").textContent = "";
       document.getElementById("userInput").value = "";
       updateText();
     }, 3000);
 }
+
 //functio joka resetoi omat lauseet
 function resetOwnSentences() {
   ownsentences = [];
   localStorage.removeItem("ownsentences");
   console.log("Custom sentences have been reset!");
+  updateText();
 }
 
 //näytetään popup ilmoitus jos tulee ensimmäistä kertaa sivulle
-window.onload = function() {
+window.onload = function() { 
   updateText();
 
-  if (window.location.pathname.endsWith("fill-in-the-blank.html")) {
-    if (localStorage.getItem("fromAddSentences") === "true") {
-    } else {
-      resetOwnSentences(); 
-      updateText();
-      showModel
-      document.getElementById("gameModal").style.display = "block";
-    }
+  const cameFromAddSentences = localStorage.getItem("fromAddSentences") === "true";
+
+  if (cameFromAddSentences) {
+    // Remove the flag so it only skips once
+    localStorage.removeItem("fromAddSentences");
+    closeModal();
+  } else {
+    showModel();
   }
 }
 
 function showModel() {
   resetOwnSentences();
-  document.getElementById("gameModal").style.display = "block";
 }
+
 //functio joka sulkee popup ilmoituksen
 function closeModal() {
   document.getElementById("gameModal").style.display = "none";
 }
 
+function restartGame() {
+  usedsentences = [];
+  score = 0;
+  document.getElementById("winModal").style.display = "none";
+  updateText();
+}
