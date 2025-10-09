@@ -62,8 +62,9 @@ function restartGame() {
 function info(){
   window.alert("Paina kirjaimia kirjoitusjärjestyksessä, jotka muodostavat sanan, joka on listattu alla 'Words to find' osiossa.\n\nSitten kun kirjaimet on valikoitu, paina 'Confirm word' nappia ja sana muuttuu vihreäksi jos valikointi oli oikein.\n\n'Reset selection' napista keltaisena olevat valikoidut ruudut muuttuvat valitsemattomiksi\n\n'Restart game' nappi aloittaa pelin alusta  ");
 }
+
 document.getElementById("info").addEventListener("click", () => {
-  info();
+  showInfoModal();
 });
 
 document.getElementById("reset").addEventListener("click", () => {
@@ -240,7 +241,7 @@ function gameStatus(){
 }
 function a(a){
   if(a == "won"){
-    window.alert("You win! \nClick ok to play again");
+    showWinModal();
     if(confirm){
       initSanat();
       createEmptyGrid();
@@ -251,5 +252,19 @@ function a(a){
     }
   }
 }
+function closeInfoModal() {
+  document.getElementById("infoModal").style.display = "none";
+}
 
+function showInfoModal(){
+    document.getElementById("infoModal").style.display = "flex";
+}
+
+function closeWinModal(){
+    document.getElementById("winModal").style.display = "none";
+}
+
+function showWinModal(){
+    document.getElementById("winModal").style.display = "flex";
+}
 // ------------------ MUUT FUNKTIOT ------------------
