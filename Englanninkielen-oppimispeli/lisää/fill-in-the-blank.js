@@ -41,10 +41,10 @@ function updateText() {
   const winModal = document.getElementById("winModal");
 
   if (score >= usedsentences.length / 2) {
-    winTitle.textContent = "🎉 You Won! 🎉";
+    winTitle.textContent = "You Won! ";
     winText.textContent = `Voitit! Sait ${score} pistettä.`;
   } else {
-    winTitle.textContent = "😢 You Lost 😢";
+    winTitle.textContent = "You Lost ";
     winText.textContent = `Hävisit. Sait ${score} pistettä.`;
   }
 
@@ -145,8 +145,5 @@ function closeModal() {
 }
 
 function restartGame() {
-  usedsentences = [];
-  score = 0;
-  document.getElementById("winModal").style.display = "none";
-  updateText();
+  window.location.reload();
 }
