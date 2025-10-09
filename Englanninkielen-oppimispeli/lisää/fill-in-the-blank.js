@@ -9,6 +9,12 @@ let theword = "";
 let score = 0;
 let firstTry = true;
 
+const correctSound = new Audio('../audio/ding.wav');
+const wrongSound   = new Audio('../audio/buzzer.mp3');
+
+correctSound.volume = 0.8;  
+wrongSound.volume = 0.15;    
+
 //fuctio joka vaihtaa sivua
 function switchPage() {
   window.location.href = "add-own-sentences.html";
@@ -29,7 +35,12 @@ function updateText() {
     element.classList.remove("hidden");
     let element1 = document.getElementById("showModel");
     element1.classList.remove("hidden");
+        
+    if (score >= usedsentences.length / 2) {
     document.getElementById("output").textContent = "Voitit sait " + score + " pistettä!";
+    } else {
+      document.getElementById("output").textContent = "Hävisit sait " + score + " pistettä!";
+    }
     return;
   }
 
@@ -51,15 +62,20 @@ function checkAnswer() {
   if (
     replacedWords.join(", ").toLowerCase() === text.toLowerCase() ||
     replacedWords.join(",").toLowerCase() === text.toLowerCase()
-  ) { 
+  ) {
+    correctSound.currentTime = 0; 
+    correctSound.play(); 
     document.getElementById("output2").textContent = "Correct!";
     showAnswer();
 
     
   } else {
+    wrongSound.currentTime = 0; 
+    wrongSound.play();
     document.getElementById("output2").textContent = "Try again!";
     firstTry = false;
   }
+
   //annetaan käyttäjälle valinta näyttää vastaus
   let element = document.getElementById("vastaus");
   element.classList.remove("hidden");
@@ -78,38 +94,42 @@ function nextSentence() {
     }
   
     setTimeout(() => {
+      let element = document.getElementById("vastaus");
+      element.classList.add("hidden");
       document.getElementById("output2").textContent = "";
       document.getElementById("input").textContent = "";
       document.getElementById("userInput").value = "";
       updateText();
     }, 3000);
 }
+
 //functio joka resetoi omat lauseet
 function resetOwnSentences() {
   ownsentences = [];
   localStorage.removeItem("ownsentences");
   console.log("Custom sentences have been reset!");
+  updateText();
 }
 
 //näytetään popup ilmoitus jos tulee ensimmäistä kertaa sivulle
-window.onload = function() {
+window.onload = function() { 
   updateText();
 
-  if (window.location.pathname.endsWith("fill-in-the-blank.html")) {
-    if (localStorage.getItem("fromAddSentences") === "true") {
-    } else {
-      resetOwnSentences(); 
-      updateText();
-      showModel
-      document.getElementById("gameModal").style.display = "block";
-    }
+  const cameFromAddSentences = localStorage.getItem("fromAddSentences") === "true";
+
+  if (cameFromAddSentences) {
+    // Remove the flag so it only skips once
+    localStorage.removeItem("fromAddSentences");
+    closeModal();
+  } else {
+    showModel();
   }
 }
 
 function showModel() {
   resetOwnSentences();
-  document.getElementById("gameModal").style.display = "block";
 }
+
 //functio joka sulkee popup ilmoituksen
 function closeModal() {
   document.getElementById("gameModal").style.display = "none";

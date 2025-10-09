@@ -26,8 +26,11 @@ function switchPage() {
     ownsentences.push(input.value.trim());
   });
 
+  // ✅ Save sentences and set the “came from Add Sentences” flag
   localStorage.setItem("ownsentences", JSON.stringify(ownsentences));
   localStorage.setItem("fromAddSentences", "true");
+
+  // ✅ Move to the next page
   window.location.href = "fill-in-the-blank.html";
 }
 
