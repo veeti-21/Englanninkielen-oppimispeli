@@ -27,7 +27,7 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 
   // Adjust volume (0.0 = silent, 1.0 = full volume)
   correctSound.volume = 0.8;  // slightly lower than full
-  wrongSound.volume = 0.05;    // make the wrong one quieter
+  wrongSound.volume = 0.2;    // make the wrong one quieter
 
   function setNewWord() {
     const randomIndex = Math.floor(Math.random() * words.length);
