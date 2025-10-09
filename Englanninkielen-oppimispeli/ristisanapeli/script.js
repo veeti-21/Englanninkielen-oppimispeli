@@ -4,6 +4,9 @@ const words = ["123", "456", "789"];
 let placedWords = []; 
 
 let sanat = [];
+
+
+
 for(let i = 0; i < words.length; i++){
   if(words[i].length >= 15){
     console.log("Max wordlength is 14 characters");
@@ -74,7 +77,6 @@ document.getElementById("confirm").addEventListener("click", () => {
   const message = document.getElementById("message");
 
   if (selectedCells.length === 0) {
-    message.textContent = "❗ Please select some cells.";
     return;
   }
 
@@ -94,7 +96,6 @@ document.getElementById("confirm").addEventListener("click", () => {
   );
 
   if (foundWord) {
-    message.textContent = `✅ Correct! You found "${foundWord.word}"!`;
     selectedCells.forEach(c => {
       c.classList.remove("selected");
       c.classList.add("found");
@@ -104,11 +105,11 @@ document.getElementById("confirm").addEventListener("click", () => {
     placedWords = placedWords.filter(pw => pw.word !== foundWord.word);
     resetSelection();
   } else {
-    message.textContent = "❌ Selection does not match any placed word.";
     resetSelection();
   }
 
   updateWordList();
+  a(gameStatus());
 });
 // ------------------ NAPIT ------------------ 
 
@@ -205,6 +206,15 @@ function renderGrid() {
 function updateWordList() {
   document.getElementById("wordList").textContent = sanat.join(", ");
 }
+function initSanat(){
+for(let i = 0; i < words.length; i++){
+  if(words[i].length >= 15){
+    console.log("Max wordlength is 14 characters");
+  } else {
+    sanat[i] = words[i].toUpperCase();
+  }
+}
+}
 
 
 createEmptyGrid();
@@ -212,6 +222,32 @@ insertWords();
 fillEmptySpaces();
 renderGrid();
 updateWordList();
+
 // ------------------ PELIN ALOTUS FUNKTIOT ------------------
 
 
+// ------------------ MUUT FUNKTIOT ------------------
+
+function gameStatus(){
+  if(sanat.length == 0){
+    return "won";
+  }else{
+    return "";
+  }
+}
+
+function a(a){
+  if(a == "won"){
+    window.alert("You win! \nClick ok to play again");
+    if(confirm){
+      initSanat();
+      createEmptyGrid();
+      insertWords();
+      fillEmptySpaces();
+      renderGrid();
+      updateWordList();
+    }
+  }
+}
+
+// ------------------ MUUT FUNKTIOT ------------------
