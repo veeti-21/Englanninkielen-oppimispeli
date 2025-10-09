@@ -42,16 +42,15 @@
   </div>
 
   
-  <div id="winmodal" class="gameModal">
-    <div>
-      <h2>test</h2>
-      <p>Sinun pitää täydentää tyhjät sanat jotka on apuverbit englanniksi.</p>
-      <p>Voit myös lisätä omia lauseita painamalla "lisää omat lauseet" nappia.</p>
-      <p>Jos vastauksessa on enemmän kuin yksi sana laita pilkku vastauksien väliin (vastaus1, vastuas2)</p>
-      <button onclick="closeModal()">Aloita peli</button>
-      <button onclick="switchPage()">Lisää omat lauseet</button>
-    </div>
+  <!-- WIN MODAL -->
+<div id="winModal" class="gameModal" style="display: none;">
+  <div class="modal-content">
+    <h2 id="winTitle">🎉 You Won! 🎉</h2>
+    <p id="winText"></p>
+    <button onclick="restartGame()">Play Again</button>
   </div>
+</div>
+
 
   <script src="fill-in-the-blank.js"></script>
 </body>

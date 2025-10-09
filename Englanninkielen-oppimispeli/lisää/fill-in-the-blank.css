@@ -84,7 +84,9 @@ button:hover {
 button.hidden {
     display: none;
 }
-
+.hidden {
+    display: none;
+}
 /* Modal backdrop */
 .gameModal {
     position: fixed;

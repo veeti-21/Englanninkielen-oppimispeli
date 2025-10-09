@@ -31,19 +31,27 @@ function updateText() {
     ? ownsentences.filter(s => !usedsentences.includes(s)) : sentences.filter(s => !usedsentences.includes(s));
     
   if (available.length === 0) {
-    let element = document.getElementById("addOwnBtn");
-    element.classList.remove("hidden");
-    let element1 = document.getElementById("showModel");
-    element1.classList.remove("hidden");
-        
-    if (score >= usedsentences.length / 2) {
-    document.getElementById("output").textContent = "Voitit sait " + score + " pistettä!";
-    document.getElementById("winModal").style.display = "block";
-    } else {
-      document.getElementById("output").textContent = "Hävisit sait " + score + " pistettä!";
-    }
-    return;
+  let element = document.getElementById("addOwnBtn");
+  element?.classList.remove("hidden");
+  let element1 = document.getElementById("showModel");
+  element1?.classList.remove("hidden");
+
+  const winTitle = document.getElementById("winTitle");
+  const winText = document.getElementById("winText");
+  const winModal = document.getElementById("winModal");
+
+  if (score >= usedsentences.length / 2) {
+    winTitle.textContent = "🎉 You Won! 🎉";
+    winText.textContent = `Voitit! Sait ${score} pistettä.`;
+  } else {
+    winTitle.textContent = "😢 You Lost 😢";
+    winText.textContent = `Hävisit. Sait ${score} pistettä.`;
   }
+
+  winModal.style.display = "flex";
+  return;
+}
+
 
   let text = available[getRandomInt(0, available.length - 1)];
   theword = text;
@@ -136,3 +144,9 @@ function closeModal() {
   document.getElementById("gameModal").style.display = "none";
 }
 
+function restartGame() {
+  usedsentences = [];
+  score = 0;
+  document.getElementById("winModal").style.display = "none";
+  updateText();
+}
