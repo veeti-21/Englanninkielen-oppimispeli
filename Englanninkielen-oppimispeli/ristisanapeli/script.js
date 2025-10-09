@@ -1,6 +1,6 @@
 const size = 14;
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const words = ["123", "456", "789"];
+const words = ["computer", "javascript", "chatgpt", "moi", "koira"];
 let placedWords = []; 
 
 let sanat = [];
