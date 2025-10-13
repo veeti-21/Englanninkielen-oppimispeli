@@ -1,0 +1,189 @@
+body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 10px;
+      background-image: url('puu.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .menu-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .btn.secondary {
+      background-color: #ff9800;
+    }
+
+    .btn.secondary:hover {
+      background-color: #e68900;
+    }
+
+    #menuModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff2e6;
+      padding: 20px 30px;
+      border: 2px solid #d19a66;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 2000;
+      min-width: 220px;
+    }
+
+    #menuModal .btn {
+      width: 100%;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    #modalOverlayMenu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1500;
+    }
+
+    .title-box {
+      background-color: rgba(255, 248, 230, 0.85);
+      padding: 15px 25px;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border: 2px solid #8b6d4a;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      position: relative;
+      max-width: 90%;
+    }
+
+    .title-box h1 {
+      margin: 0;
+      color: #3e2f1c;
+      font-size: 26px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .column {
+      width: 200px;
+      min-height: 320px;
+      padding: 10px;
+      border: 2px solid #8b6d4a;
+      border-radius: 10px;
+      background-color: rgba(255, 248, 240, 0.9);
+      box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+    }
+
+    .column h3 {
+      margin-bottom: 10px;
+    }
+
+    .draggable-item, .drop-zone {
+      padding: 8px 10px;
+      margin: 8px 10px;
+      font-size: 14px;
+      background-color: #f0e3d0;
+      border: 1.5px solid #8b6d4a;
+      border-radius: 6px;
+      cursor: grab;
+      user-select: none;
+      font-weight: bold;
+      color: #3e2f1c;
+    }
+
+    .drop-zone {
+      border: 2px dashed #b89b7b;
+      background-color: rgba(255, 255, 255, 0.7);
+      cursor: default;
+    }
+
+    .drop-zone.matched {
+      background-color: #c8f7c5 !important;
+      border: 2px solid #2ecc71;
+      cursor: default;
+    }
+
+    .matched-text {
+      color: #2c662d;
+    }
+
+    #score {
+      font-size: 18px;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #3e2f1c;
+    }
+
+    #wrongAlert {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #ff4d4d;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    #modalOverlay {
+      display: none;
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    #endModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff8f0;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      max-width: 300px;
+      font-size: 18px;
+    }
+
+    #endModal h2 {
+      margin-bottom: 20px;
+    }
