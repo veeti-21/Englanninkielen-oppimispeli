@@ -156,70 +156,27 @@ function insertWords() {
   for (let i = 0; i < sortedWords.length; i++) {
     const word = sortedWords[i];
     let placed = false;
+    let attempts = 0;
 
-    if (placedWords.length === 0) {
-      // Place first word in middle
-      const row = Math.floor(size / 2);
-      const col = Math.floor((size - word.length) / 2);
-      
-      if (col >= 0 && col + word.length <= size) {
+    while (!placed && attempts < 5000) {
+      const direction = Math.random() > 0.5 ? "horizontal" : "vertical";
+      const row = Math.floor(Math.random() * size);
+      const col = Math.floor(Math.random() * size);
+
+      if (canPlaceWord(word, row, col, direction)) {
         const cells = [];
+        
         for (let j = 0; j < word.length; j++) {
-          grid[row][col + j] = word[j];
-          cells.push({ row: row, col: col + j });
+          const r = direction === "horizontal" ? row : row + j;
+          const c = direction === "horizontal" ? col + j : col;
+          grid[r][c] = word[j];
+          cells.push({ row: r, col: c });
         }
+        
         placedWords.push({ word: word, cells: cells });
         placed = true;
       }
-    } else {
-      // Try to intersect with existing words
-      let attempts = 0;
-      while (!placed && attempts < 5000) {
-        // Pick a random letter from the word
-        const letterIndex = Math.floor(Math.random() * word.length);
-        const letter = word[letterIndex];
-        
-        // Find a random occurrence of this letter in the grid
-        const positions = [];
-        for (let r = 0; r < size; r++) {
-          for (let c = 0; c < size; c++) {
-            if (grid[r][c] === letter) {
-              positions.push({ row: r, col: c });
-            }
-          }
-        }
-        
-        if (positions.length > 0) {
-          // Pick random position and try both directions
-          const pos = positions[Math.floor(Math.random() * positions.length)];
-          
-          // Try horizontal
-          const hCol = pos.col - letterIndex;
-          if (hCol >= 0 && hCol + word.length <= size && canPlaceWord(word, pos.row, hCol, "horizontal")) {
-            const cells = [];
-            for (let j = 0; j < word.length; j++) {
-              grid[pos.row][hCol + j] = word[j];
-              cells.push({ row: pos.row, col: hCol + j });
-            }
-            placedWords.push({ word: word, cells: cells });
-            placed = true;
-          }
-          
-          // Try vertical
-          const vRow = pos.row - letterIndex;
-          if (!placed && vRow >= 0 && vRow + word.length <= size && canPlaceWord(word, vRow, pos.col, "vertical")) {
-            const cells = [];
-            for (let j = 0; j < word.length; j++) {
-              grid[vRow + j][pos.col] = word[j];
-              cells.push({ row: vRow + j, col: pos.col });
-            }
-            placedWords.push({ word: word, cells: cells });
-            placed = true;
-          }
-        }
-        
-        attempts++;
-      }
+      attempts++;
     }
 
     if (!placed) {
