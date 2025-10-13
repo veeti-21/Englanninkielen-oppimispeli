@@ -1,6 +1,6 @@
 const size = 14;
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const words = ["123", "456", "789"];
+const words = ["computer", "javascript", "chatgpt", "moi", "koira","kurapora","authenticate","implement","master","baiter"];
 let placedWords = []; 
 
 let sanat = [];
@@ -129,58 +129,105 @@ function createEmptyGrid() {
     grid.push(row);
   }
 }
+function canPlaceWord(word, row, col, direction) {
+  // Check boundaries
+  if (direction === "horizontal" && col + word.length > size) return false;
+  if (direction === "vertical" && row + word.length > size) return false;
+
+  let hasConflict = false;
+
+  for (let j = 0; j < word.length; j++) {
+    const r = direction === "horizontal" ? row : row + j;
+    const c = direction === "horizontal" ? col + j : col;
+    const cellContent = grid[r][c];
+
+    if (cellContent !== "." && cellContent !== word[j]) {
+      // Different letter in same cell - conflict!
+      hasConflict = true;
+      break;
+    }
+  }
+
+  return !hasConflict;
+}
+
 function insertWords() {
-  placedWords = []; // clear previous placements
+  placedWords = [];
+  
+  // Sort words by length (longest first) for better placement
+  const sortedWords = [...sanat].sort((a, b) => b.length - a.length);
 
-  for (let i = 0; i < sanat.length; i++) {
-    const word = sanat[i];
+  for (let i = 0; i < sortedWords.length; i++) {
+    const word = sortedWords[i];
     let placed = false;
-    let attempts = 0;
 
-    while (!placed && attempts < 1000) {
-      const direction = Math.random() > 0.5 ? "horizontal" : "vertical";
-      const row = Math.floor(Math.random() * size);
-      const col = Math.floor(Math.random() * size);
-
-      let canPlace = true;
-      let cells = [];
-
-      if (direction === "horizontal") {
-        if (col + word.length <= size) {
-          for (let j = 0; j < word.length; j++) {
-            if (grid[row][col + j] !== "." && grid[row][col + j] !== word[j]) {
-              canPlace = false;
-              break;
-            }
-          }
-          if (canPlace) {
-            for (let j = 0; j < word.length; j++) {
-              grid[row][col + j] = word[j];
-              cells.push({ row: row, col: col + j });
-            }
-            placedWords.push({ word: word, cells: cells });
-            placed = true;
-          }
+    if (placedWords.length === 0) {
+      // Place first word in middle
+      const row = Math.floor(size / 2);
+      const col = Math.floor((size - word.length) / 2);
+      
+      if (col >= 0 && col + word.length <= size) {
+        const cells = [];
+        for (let j = 0; j < word.length; j++) {
+          grid[row][col + j] = word[j];
+          cells.push({ row: row, col: col + j });
         }
-      } else { // vertical
-        if (row + word.length <= size) {
-          for (let j = 0; j < word.length; j++) {
-            if (grid[row + j][col] !== "." && grid[row + j][col] !== word[j]) {
-              canPlace = false;
-              break;
-            }
-          }
-          if (canPlace) {
-            for (let j = 0; j < word.length; j++) {
-              grid[row + j][col] = word[j];
-              cells.push({ row: row + j, col: col });
-            }
-            placedWords.push({ word: word, cells: cells });
-            placed = true;
-          }
-        }
+        placedWords.push({ word: word, cells: cells });
+        placed = true;
       }
-      attempts++;
+    } else {
+      // Try to intersect with existing words
+      let attempts = 0;
+      while (!placed && attempts < 5000) {
+        // Pick a random letter from the word
+        const letterIndex = Math.floor(Math.random() * word.length);
+        const letter = word[letterIndex];
+        
+        // Find a random occurrence of this letter in the grid
+        const positions = [];
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (grid[r][c] === letter) {
+              positions.push({ row: r, col: c });
+            }
+          }
+        }
+        
+        if (positions.length > 0) {
+          // Pick random position and try both directions
+          const pos = positions[Math.floor(Math.random() * positions.length)];
+          
+          // Try horizontal
+          const hCol = pos.col - letterIndex;
+          if (hCol >= 0 && hCol + word.length <= size && canPlaceWord(word, pos.row, hCol, "horizontal")) {
+            const cells = [];
+            for (let j = 0; j < word.length; j++) {
+              grid[pos.row][hCol + j] = word[j];
+              cells.push({ row: pos.row, col: hCol + j });
+            }
+            placedWords.push({ word: word, cells: cells });
+            placed = true;
+          }
+          
+          // Try vertical
+          const vRow = pos.row - letterIndex;
+          if (!placed && vRow >= 0 && vRow + word.length <= size && canPlaceWord(word, vRow, pos.col, "vertical")) {
+            const cells = [];
+            for (let j = 0; j < word.length; j++) {
+              grid[vRow + j][pos.col] = word[j];
+              cells.push({ row: vRow + j, col: pos.col });
+            }
+            placedWords.push({ word: word, cells: cells });
+            placed = true;
+          }
+        }
+        
+        attempts++;
+      }
+    }
+
+    if (!placed) {
+      console.warn(`Could not place word: ${word}`);
     }
   }
 }
@@ -210,14 +257,15 @@ function renderGrid() {
 function updateWordList() {
   document.getElementById("wordList").textContent = sanat.join(", ");
 }
-function initSanat(){
-for(let i = 0; i < words.length; i++){
-  if(words[i].length >= 15){
-    console.log("Max wordlength is 14 characters");
-  } else {
-    sanat[i] = words[i].toUpperCase();
+function initSanat() {
+  sanat = [];
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length >= 15) {
+      console.log("Max wordlength is 14 characters");
+    } else {
+      sanat.push(words[i].toUpperCase());
+    }
   }
-}
 }
 
 
