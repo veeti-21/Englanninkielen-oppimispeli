@@ -1,4 +1,5 @@
 
+
 //ladataaan omat lauseet local storagesta
 let ownsentences = JSON.parse(localStorage.getItem("ownsentences")) || [];
 
@@ -145,5 +146,8 @@ function closeModal() {
 }
 
 function restartGame() {
-  window.location.reload();
+  usedsentences = [];
+  score = 0;
+  document.getElementById("winModal").style.display = "none";
+  updateText();
 }
