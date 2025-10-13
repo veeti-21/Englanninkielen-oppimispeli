@@ -5,6 +5,7 @@ let placedWords = [];
 
 let sanat = [];
 
+var ding = new Audio('../audio/ding.wav');
 
 
 for(let i = 0; i < words.length; i++){
@@ -103,6 +104,7 @@ document.getElementById("confirm").addEventListener("click", () => {
     selectedCells.forEach(c => {
       c.classList.remove("selected");
       c.classList.add("found");
+      ding.play();
     });
 
     sanat = sanat.filter(w => w !== foundWord.word);
