@@ -21,6 +21,7 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 
   let currentTarget = "";
 
+
   // Load audio files
   const correctSound = new Audio('../audio/ding.wav');
 
@@ -29,7 +30,6 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
   // Adjust volume (0.0 = silent, 1.0 = full volume)
   correctSound.volume = 0.8;  // slightly lower than full
   wrongSound.volume = 0.2;    // make the wrong one quieter
-
 
   function setNewWord() {
     const randomIndex = Math.floor(Math.random() * words.length);
@@ -91,6 +91,7 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
   function testsound() {
     wrongSound.currentTime = 0;
     wrongSound.play();
+
 
   }
   function closeModal() {
