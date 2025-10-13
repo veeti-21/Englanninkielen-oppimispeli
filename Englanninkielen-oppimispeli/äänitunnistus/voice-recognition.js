@@ -21,13 +21,15 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 
   let currentTarget = "";
 
-  // 🎵 Load audio files
+  // Load audio files
   const correctSound = new Audio('../audio/ding.wav');
-  const wrongSound   = new Audio('../audio/wrong-answer.mp3');
+
+  const wrongSound   = new Audio('../audio/buzzer.mp3');
 
   // Adjust volume (0.0 = silent, 1.0 = full volume)
   correctSound.volume = 0.8;  // slightly lower than full
-  wrongSound.volume = 0.05;    // make the wrong one quieter
+  wrongSound.volume = 0.2;    // make the wrong one quieter
+
 
   function setNewWord() {
     const randomIndex = Math.floor(Math.random() * words.length);
@@ -45,12 +47,14 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
       return;
     }
     recognition.start();
-    output.textContent = "🎤 Listening...";
+
+    output.textContent = "Listening...";
   }
 
   function stopRecognition() {
     recognition.stop();
-    output.textContent = "🛑 Stopped listening.";
+
+    output.textContent = "Stopped listening.";
   }
 
   recognition.onresult = (event) => {
@@ -67,15 +71,17 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
   function checkPronunciation(spoken) {
     const target = currentTarget.toLowerCase();
     if (spoken === target) {
-      feedback.textContent = "✅ Perfect!";
+
+      feedback.textContent = "Perfect!";
       feedback.style.color = "#7CFC00";
       correctSound.currentTime = 0; // restart audio
       correctSound.play();
     } else if (spoken.includes(target) || target.includes(spoken)) {
-      feedback.textContent = "🟡 Almost!";
+
+      feedback.textContent = "Almost!";
       feedback.style.color = "#FFD700";
     } else {
-      feedback.textContent = "❌ Try again!";
+      feedback.textContent = "Try again!";
       feedback.style.color = "#FF6347";
       wrongSound.currentTime = 0; // restart audio
       wrongSound.play();
@@ -85,8 +91,12 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
   function testsound() {
     wrongSound.currentTime = 0;
     wrongSound.play();
+
   }
   function closeModal() {
   setNewWord();
   document.getElementById("gameModal").style.display = "none";
 }
+
+  }
+
