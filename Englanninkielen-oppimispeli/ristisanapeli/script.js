@@ -1,10 +1,11 @@
 const size = 14;
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const words = ["123", "456", "789"];
+const words = ["computer", "javascript", "chatgpt", "moi", "koira","kurapora","authenticate","implement","master","baiter"];
 let placedWords = []; 
 
 let sanat = [];
 
+var ding = new Audio('../audio/ding.wav');
 
 
 for(let i = 0; i < words.length; i++){
@@ -103,6 +104,7 @@ document.getElementById("confirm").addEventListener("click", () => {
     selectedCells.forEach(c => {
       c.classList.remove("selected");
       c.classList.add("found");
+      ding.play();   
     });
 
     sanat = sanat.filter(w => w !== foundWord.word);
@@ -129,58 +131,58 @@ function createEmptyGrid() {
     grid.push(row);
   }
 }
-function insertWords() {
-  placedWords = []; // clear previous placements
+function canPlaceWord(word, row, col, direction) {
+  // Check boundaries
+  if (direction === "horizontal" && col + word.length > size) return false;
+  if (direction === "vertical" && row + word.length > size) return false;
 
-  for (let i = 0; i < sanat.length; i++) {
-    const word = sanat[i];
+  for (let j = 0; j < word.length; j++) {
+    const r = direction === "horizontal" ? row : row + j;
+    const c = direction === "horizontal" ? col + j : col;
+    
+    // Cell must be empty
+    if (grid[r][c] !== ".") {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function insertWords() {
+  placedWords = [];
+  
+  // Sort words by length (longest first) for better placement
+  const sortedWords = [...sanat].sort((a, b) => b.length - a.length);
+
+  for (let i = 0; i < sortedWords.length; i++) {
+    const word = sortedWords[i];
     let placed = false;
     let attempts = 0;
 
-    while (!placed && attempts < 1000) {
+    while (!placed && attempts < 5000) {
       const direction = Math.random() > 0.5 ? "horizontal" : "vertical";
       const row = Math.floor(Math.random() * size);
       const col = Math.floor(Math.random() * size);
 
-      let canPlace = true;
-      let cells = [];
-
-      if (direction === "horizontal") {
-        if (col + word.length <= size) {
-          for (let j = 0; j < word.length; j++) {
-            if (grid[row][col + j] !== "." && grid[row][col + j] !== word[j]) {
-              canPlace = false;
-              break;
-            }
-          }
-          if (canPlace) {
-            for (let j = 0; j < word.length; j++) {
-              grid[row][col + j] = word[j];
-              cells.push({ row: row, col: col + j });
-            }
-            placedWords.push({ word: word, cells: cells });
-            placed = true;
-          }
+      if (canPlaceWord(word, row, col, direction)) {
+        const cells = [];
+        
+        for (let j = 0; j < word.length; j++) {
+          const r = direction === "horizontal" ? row : row + j;
+          const c = direction === "horizontal" ? col + j : col;
+          grid[r][c] = word[j];
+          cells.push({ row: r, col: c });
         }
-      } else { // vertical
-        if (row + word.length <= size) {
-          for (let j = 0; j < word.length; j++) {
-            if (grid[row + j][col] !== "." && grid[row + j][col] !== word[j]) {
-              canPlace = false;
-              break;
-            }
-          }
-          if (canPlace) {
-            for (let j = 0; j < word.length; j++) {
-              grid[row + j][col] = word[j];
-              cells.push({ row: row + j, col: col });
-            }
-            placedWords.push({ word: word, cells: cells });
-            placed = true;
-          }
-        }
+        
+        placedWords.push({ word: word, cells: cells });
+        placed = true;
       }
       attempts++;
+    }
+
+    if (!placed) {
+      console.warn(`Could not place word: ${word}`);
     }
   }
 }
@@ -210,14 +212,15 @@ function renderGrid() {
 function updateWordList() {
   document.getElementById("wordList").textContent = sanat.join(", ");
 }
-function initSanat(){
-for(let i = 0; i < words.length; i++){
-  if(words[i].length >= 15){
-    console.log("Max wordlength is 14 characters");
-  } else {
-    sanat[i] = words[i].toUpperCase();
+function initSanat() {
+  sanat = [];
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length >= 15) {
+      console.log("Max wordlength is 14 characters");
+    } else {
+      sanat.push(words[i].toUpperCase());
+    }
   }
-}
 }
 
 
