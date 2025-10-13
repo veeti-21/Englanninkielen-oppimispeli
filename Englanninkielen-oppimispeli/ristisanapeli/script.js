@@ -104,7 +104,7 @@ document.getElementById("confirm").addEventListener("click", () => {
     selectedCells.forEach(c => {
       c.classList.remove("selected");
       c.classList.add("found");
-      ding.play();  
+      ding.play();   
     });
 
     sanat = sanat.filter(w => w !== foundWord.word);
