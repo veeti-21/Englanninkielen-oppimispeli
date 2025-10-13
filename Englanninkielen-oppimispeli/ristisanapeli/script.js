@@ -134,21 +134,17 @@ function canPlaceWord(word, row, col, direction) {
   if (direction === "horizontal" && col + word.length > size) return false;
   if (direction === "vertical" && row + word.length > size) return false;
 
-  let hasConflict = false;
-
   for (let j = 0; j < word.length; j++) {
     const r = direction === "horizontal" ? row : row + j;
     const c = direction === "horizontal" ? col + j : col;
-    const cellContent = grid[r][c];
-
-    if (cellContent !== "." && cellContent !== word[j]) {
-      // Different letter in same cell - conflict!
-      hasConflict = true;
-      break;
+    
+    // Cell must be empty
+    if (grid[r][c] !== ".") {
+      return false;
     }
   }
 
-  return !hasConflict;
+  return true;
 }
 
 function insertWords() {
