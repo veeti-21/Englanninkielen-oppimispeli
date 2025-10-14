@@ -189,4 +189,42 @@ body > *:not(.main-header) {
     }
 }
 
+/* --- Generic Refresh Button --- */
+#refreshBtn {
+    background: radial-gradient(circle at 30% 30%, #8b6b3d, #5c3d1e);
+    border: 2px solid #b89454;
+    color: #f5e8c8;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; /* spacing for icon + text */
+    transition: all 0.3s;
+    box-shadow: 
+        inset 0 0 8px rgba(0,0,0,0.4),
+        0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Hover effect */
+#refreshBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.5),
+        0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Optional small circular variant for top-right corner */
+#refreshBtn.circular {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    justify-content: center;
+    gap: 0;
+}
 
