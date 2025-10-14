@@ -1,5 +1,12 @@
+
+/*
 const ekat  = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
 const tokat = ["yks", "kaks", "kolme", "neljä", "viis", "kuus", "seittemän", "kaheksa", "yheksä", "kymmene", "ykstoist", "kakstoist", "kolmetoist", "neljätoist", "viistoist", "kuustoist", "seittemäntoista", "kaheksantoist"];
+*/
+
+
+const ekat = ["dog","cat","cow","house","car","bicycle","computer","mouse","squirrel","table","tree","phone","book","chair","window","flower","bird","lamp"]
+const tokat = ["koira","kissa","talo","auto","polkupyörä","tietokone","hiiri","orava","pöytä","puu","puhelin","kirja","tuoli","ikkuna","kukka","lintu","lamppu"]
 
 var ding = new Audio('../audio/ding.wav');
 
