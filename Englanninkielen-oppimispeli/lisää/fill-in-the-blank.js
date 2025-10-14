@@ -89,21 +89,24 @@ document.getElementById("hint").textContent = hintText;
   document.getElementById("output").textContent = text;
   firstTry = true;
 }
+input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      button.click(); // Simulates a click on the button
+    }
+  });
 //functio joka tarkistaa käyttäjän vastauksen
 function checkAnswer() {
   console.log(replacedWords); 
   let text = document.getElementById("userInput").value;
 
+  // Compare using spaces instead of commas
   if (
-    replacedWords.join(", ").toLowerCase() === text.toLowerCase() ||
-    replacedWords.join(",").toLowerCase() === text.toLowerCase()
+    replacedWords.join(" ").toLowerCase() === text.toLowerCase()
   ) {
     correctSound.currentTime = 0; 
     correctSound.play(); 
     document.getElementById("output2").textContent = "Correct!";
     showAnswer();
-
-    
   } else {
     wrongSound.currentTime = 0; 
     wrongSound.play();
@@ -111,10 +114,11 @@ function checkAnswer() {
     firstTry = false;
   }
 
-  //annetaan käyttäjälle valinta näyttää vastaus
+  // Show the answer button
   let element = document.getElementById("vastaus");
   element.classList.remove("hidden");
 }
+
 
 //functio joka näyttää vastauksen
 function showAnswer() {
@@ -147,7 +151,7 @@ function resetOwnSentences() {
 }
 
 //näytetään popup ilmoitus jos tulee ensimmäistä kertaa sivulle
-window.onload = function() { 
+
   updateText();
 
   const cameFromAddSentences = localStorage.getItem("fromAddSentences") === "true";
@@ -159,7 +163,7 @@ window.onload = function() {
   } else {
     showModel();
   }
-}
+
 
 function showModel() {
   resetOwnSentences();
@@ -176,3 +180,46 @@ function restartGame() {
   document.getElementById("winModal").style.display = "none";
   updateText();
 }
+
+// Get elements
+const logoBtn = document.getElementById("logoBtn");
+const menuOverlay = document.getElementById("menuOverlay");
+const menuModal = document.getElementById("menuModal");
+
+// Show menu
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  function showMenu() {
+    menuOverlay.style.display = "block";
+    menuModal.style.display = "block";
+    menuModal.setAttribute("aria-hidden", "false");
+}
+
+// Hide menu
+function hideMenu() {
+    menuOverlay.style.display = "none";
+    menuModal.style.display = "none";
+    menuModal.setAttribute("aria-hidden", "true");
+}
+    const logoBtn = document.getElementById("logoBtn");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const menuModal = document.getElementById("menuModal");
+
+    logoBtn.addEventListener("click", showMenu);
+    menuOverlay.addEventListener("click", hideMenu);
+    menuModal.addEventListener("click", (e) => e.stopPropagation());
+
+    document.getElementById("restartBtn").addEventListener("click", () => {
+        hideMenu();
+        restartGame();
+    });
+
+    document.getElementById("menuToMenuBtn").addEventListener("click", () => {
+        hideMenu();
+        window.location.href = "index.html";
+    });
+});
+
+
+
