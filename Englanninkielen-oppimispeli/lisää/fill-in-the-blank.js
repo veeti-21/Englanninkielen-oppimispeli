@@ -99,7 +99,6 @@ function checkAnswer() {
   console.log(replacedWords); 
   let text = document.getElementById("userInput").value;
 
-  // Compare using spaces instead of commas
   if (
     replacedWords.join(" ").toLowerCase() === text.toLowerCase()
   ) {
@@ -107,6 +106,8 @@ function checkAnswer() {
     correctSound.play(); 
     document.getElementById("output2").textContent = "Correct!";
     showAnswer();
+
+    
   } else {
     wrongSound.currentTime = 0; 
     wrongSound.play();
@@ -114,11 +115,10 @@ function checkAnswer() {
     firstTry = false;
   }
 
-  // Show the answer button
+  //annetaan käyttäjälle valinta näyttää vastaus
   let element = document.getElementById("vastaus");
   element.classList.remove("hidden");
 }
-
 
 //functio joka näyttää vastauksen
 function showAnswer() {
@@ -187,10 +187,7 @@ const menuOverlay = document.getElementById("menuOverlay");
 const menuModal = document.getElementById("menuModal");
 
 // Show menu
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  function showMenu() {
+function showMenu() {
     menuOverlay.style.display = "block";
     menuModal.style.display = "block";
     menuModal.setAttribute("aria-hidden", "false");
@@ -202,6 +199,8 @@ function hideMenu() {
     menuModal.style.display = "none";
     menuModal.setAttribute("aria-hidden", "true");
 }
+
+document.addEventListener("DOMContentLoaded", () => {
     const logoBtn = document.getElementById("logoBtn");
     const menuOverlay = document.getElementById("menuOverlay");
     const menuModal = document.getElementById("menuModal");
