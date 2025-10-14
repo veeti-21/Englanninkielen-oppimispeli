@@ -109,10 +109,74 @@
             color: #f5e8c8;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
+
+        
+        .winModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;  /* horizontal centering */
+    align-items: center;      /* vertical centering */
+    z-index: 10;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Modal content */
+.winModal > div {
+    background: rgba(44, 28, 12, 0.95);
+    border: 2px solid #8b6b3d;
+    border-radius: 15px;
+    padding: 30px;
+    width: auto;
+    max-width: 500px;
+    min-width: 280px; /* keeps it from collapsing too much */
+    margin: auto;     /* ensures no left offset */
+    color: #f5e8c8;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.winModal h2 {
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    color: #f5e8c8;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+.winModal p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
     </style>
 </head>
 
 <body>
+
+    <div id="winModal" class="winModal">
+        <div>
+        <h2>Voitit pelin!</h2>
+        <p>Paina OK jos haluat uudestaan, tai palaa etusivulle painamalla "Palaa etusivulle" nappia painamalla</p>
+        <button onclick="reset()">Ok</button>
+
+        <a href="../etusivu/index.html">
+            <button>Palaa etusivulle</button>
+        </a>
+        </div>
+    </div>
+
+
     <header class="main-header">
         <div class="container">
             <a href="../etusivu/index.html" class="logo">
