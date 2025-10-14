@@ -82,7 +82,7 @@ function logCards(){
 }
 
 function win(){
-  matchedCount = cards.length-2;
+  matchedCount = cards.length-matchedCount;
 }
 
 function closeWinModal(){
