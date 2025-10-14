@@ -92,7 +92,7 @@ body {
     background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;  /* horizontal centering */
-    align-items: center;      /* vertical centering */
+    align-items: center;      
     z-index: 10;
     padding: 20px;
     box-sizing: border-box;

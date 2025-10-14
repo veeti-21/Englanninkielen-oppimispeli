@@ -69,7 +69,7 @@ recognition.lang = "en-US";
     if (spoken === target) {
       feedback.textContent = "Perfect!";
       feedback.style.color = "#7CFC00";
-      correctSound.currentTime = 0; // restart audio
+      correctSound.currentTime = 0; 
       correctSound.play();
     } else if (spoken.includes(target) || target.includes(spoken)) {
       feedback.textContent = "Almost!";
