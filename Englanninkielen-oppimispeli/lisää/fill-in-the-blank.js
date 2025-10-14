@@ -26,9 +26,6 @@ const wrongSound   = new Audio('../audio/buzzer.mp3');
 correctSound.volume = 0.8;  
 wrongSound.volume = 0.15;    
 
-document.getElementById("refreshBtn").addEventListener("click", function() {
-        location.reload(); // reloads the page
-    });
 
 //fuctio joka vaihtaa sivua
 function switchPage() {
