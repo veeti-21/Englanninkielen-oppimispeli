@@ -68,9 +68,17 @@ cards.forEach((card, idx) => {
 
 
 function logCards(){
-for(let i = 0; i < cards.length; i++){
-    console.log(cards[i]);
-}
+  const size = Math.sqrt(cards.length);
+  let pos = 0;
+
+  for(let i = 1; i<= size; i++){
+    for(let j = 1; j<=size; j++){
+      pos = (i-1) * size + j;
+
+      console.log("Row " + i + " " + "Column " + j + " " + (cards[pos-1].value));
+    }
+    console.log("\n");
+  }
 }
 
 function win(){
