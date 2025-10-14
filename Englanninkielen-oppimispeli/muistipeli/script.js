@@ -1,10 +1,3 @@
-
-/*
-const ekat  = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
-const tokat = ["yks", "kaks", "kolme", "neljä", "viis", "kuus", "seittemän", "kaheksa", "yheksä", "kymmene", "ykstoist", "kakstoist", "kolmetoist", "neljätoist", "viistoist", "kuustoist", "seittemäntoista", "kaheksantoist"];
-*/
-
-
 const ekat = ["dog","cat","cow","house","car","bicycle","computer","mouse","squirrel","table","tree","phone","book","chair","window","flower","bird","lamp"]
 const tokat = ["koira","kissa","lehmä","talo","auto","polkupyörä","tietokone","hiiri","orava","pöytä","puu","puhelin","kirja","tuoli","ikkuna","kukka","lintu","lamppu"]
 
@@ -28,14 +21,6 @@ const main = document.getElementById("main");
 let flipped = [];
 let lockBoard = false;
 let matchedCount = 0;
-
-function isMatch(a, b) {
-  return a.pairIndex === b.pairIndex && a.type !== b.type;
-}
-
-
-
-
 
 
 cards.forEach((card, idx) => {
@@ -82,9 +67,10 @@ cards.forEach((card, idx) => {
 });
 
 
-
+function logCards(){
 for(let i = 0; i < cards.length; i++){
     console.log(cards[i]);
+}
 }
 
 function win(){
@@ -143,6 +129,7 @@ cards.forEach((card, idx) => {
   grid.appendChild(cell);
 });
 }
+
 function destroyCards(){
   const cards = document.getElementsByClassName("cell");
   Array.from(cards).forEach(card => {
@@ -176,4 +163,8 @@ function reset(){
   
   // Close win modal if open
   closeWinModal();
+}
+
+function isMatch(a, b) {
+  return a.pairIndex === b.pairIndex && a.type !== b.type;
 }
