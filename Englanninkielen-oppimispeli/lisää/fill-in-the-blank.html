@@ -5,16 +5,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Input Example</title>
+  <link rel="stylesheet" href="../theme.css" />
   <link rel="stylesheet" href="fill-in-the-blank.css" />
 </head>
 
 <body>
+  <header class="main-header">
+    <div class="container">
+      <a href="../etusivu/index.html" class="logo">
+        <div style="width: 200px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+          <img src="../img/eduko.svg" alt="Front page button logo" height="192" width="216">
+        </div>
+      </a>
+    </div>
+  </header>
+
   <div class="game-box">
     
     <h2></h2>
 
     <!-- näytetään sana ilman apu verbejä -->
     <p id="output"></p>
+     <p id="hint" style="font-style: italic; color: #d0c58a;"></p>
 
     <input type="text" id="userInput" placeholder="Type something..." />
     <button onclick="checkAnswer()"id="checkAnswer">Vastaa</button> 
@@ -37,7 +49,6 @@
       <p>Voit myös lisätä omia lauseita painamalla "lisää omat lauseet" nappia.</p>
       <p>Jos vastauksessa on enemmän kuin yksi sana laita pilkku vastauksien väliin (vastaus1, vastuas2)</p>
       <button onclick="closeModal()">Aloita peli</button>
-      <button onclick="switchPage()">Lisää omat lauseet</button>
     </div>
   </div>
 
