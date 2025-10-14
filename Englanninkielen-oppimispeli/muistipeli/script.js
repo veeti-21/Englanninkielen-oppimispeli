@@ -6,7 +6,7 @@ const tokat = ["yks", "kaks", "kolme", "neljä", "viis", "kuus", "seittemän", "
 
 
 const ekat = ["dog","cat","cow","house","car","bicycle","computer","mouse","squirrel","table","tree","phone","book","chair","window","flower","bird","lamp"]
-const tokat = ["koira","kissa","talo","auto","polkupyörä","tietokone","hiiri","orava","pöytä","puu","puhelin","kirja","tuoli","ikkuna","kukka","lintu","lamppu"]
+const tokat = ["koira","kissa","lehmä","talo","auto","polkupyörä","tietokone","hiiri","orava","pöytä","puu","puhelin","kirja","tuoli","ikkuna","kukka","lintu","lamppu"]
 
 var ding = new Audio('../audio/ding.wav');
 
