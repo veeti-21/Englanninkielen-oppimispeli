@@ -9,6 +9,16 @@ let theword = "";
 let score = 0;
 let firstTry = true;
 
+const verbHints = {
+  "is": "positive",
+  "are": "positive",
+  "there": "neutral",
+  "isn't": "negative",
+  "aren't": "negative",
+  "not": "negative"
+};
+
+
 const correctSound = new Audio('../audio/ding.wav');
 const wrongSound   = new Audio('../audio/buzzer.mp3');
 
@@ -59,6 +69,20 @@ function updateText() {
   const regex = /\bisn't\b|\baren't\b|\bis\b|\bare\b|\bthere\b|\bnot\b/gi;
   replacedWords = text.match(regex) || [];
   text = text.replace(regex, "_____");
+  // generate hint based on the first replaced word
+  // generate hint(s) for all missing words
+let hintText = "";
+if (replacedWords.length > 0) {
+  hintText = "Hint: ";
+  replacedWords.forEach((word, index) => {
+    const hint = verbHints[word.toLowerCase()] || "neutral";
+    hintText += `(${index + 1}) ${hint}`;
+    if (index < replacedWords.length - 1) hintText += ", ";
+  });
+}
+document.getElementById("hint").textContent = hintText;
+
+
 
   document.getElementById("output").textContent = text;
   firstTry = true;
