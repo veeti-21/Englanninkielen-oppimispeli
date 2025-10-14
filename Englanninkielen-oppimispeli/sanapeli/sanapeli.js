@@ -117,8 +117,8 @@
     document.getElementById("playAgainBtn").onclick = initGame;
     document.getElementById("restartBtn").onclick = initGame;
 
-    document.getElementById("menuBtn").onclick = () => window.location.href = "index.html";
-    document.getElementById("menuToMenuBtn").onclick = () => window.location.href = "index.html";
+    document.getElementById("menuBtn").onclick = () => window.location.href = "../etusivu/index.html";
+    document.getElementById("menuToMenuBtn").onclick = () => window.location.href = "../etusivu/index.html";
 
     document.getElementById("menuToggleBtn").onclick = showMenu;
     menuOverlay.onclick = hideMenu;

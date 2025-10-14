@@ -99,5 +99,4 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
   document.getElementById("gameModal").style.display = "none";
 }
 
-  }
 

@@ -131,7 +131,7 @@ const months = [
     });
 
     document.getElementById("goToMenuBtn").addEventListener("click", () => {
-      window.location.href = "menu.html";
+      window.location.href = "../etusivu/index.html";
     });
 
     document.getElementById("playAgainBtn").addEventListener("click", () => {
@@ -140,7 +140,7 @@ const months = [
     });
 
     document.getElementById("menuBtn").addEventListener("click", () => {
-      window.location.href = "menu.html";
+      window.location.href = "../etusivu/index.html";
     });
 
     initGame();
