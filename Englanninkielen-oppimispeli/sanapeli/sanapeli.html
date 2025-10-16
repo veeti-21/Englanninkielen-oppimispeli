@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sanapeli – Yhdistä sanat</title>
+  <link rel="stylesheet" href="sanapeli.css" />
+</head>
+<body>
+
+
+
+  <div class="menu-wrapper">
+    <button class="btn-menu" id="menuToggleBtn">☰</button>
+  </div>
+
+  <div class="game-box">
+    <div class="title">Yhdistä englanninkieliset ja suomenkieliset sanat</div>
+    <div class="word-box" id="wordBox"></div>
+    <div id="successMessage"> </div>
+  </div>
+
+  <div id="modalOverlay"></div>
+  <div id="endModal">
+    <h2>🎉 Hienoa!</h2>
+    <p>Olet yhdistänyt kaikki sanat oikein!</p>
+    <button id="playAgainBtn">🔁 Pelaa uudelleen</button>
+    <button id="menuBtn">🏠 Valikkoon</button>
+  </div>
+
+  <div id="menuOverlay"></div>
+  <div id="menuModal">
+    <h2></h2>
+    <button id="restartBtn">🔁 Aloita uudestaan</button>
+    <button id="menuToMenuBtn">🏠 Palaa valikkoon</button>
+  </div>
+
+<script src="sanapeli.js"></script>
+  
+</body>
+</html>
