@@ -9,6 +9,7 @@ let usedsentences = [];
 let theword = "";
 let score = 0;
 let firstTry = true;
+const userInput = document.getElementById("userInput");
 
 const verbHints = {
   "is": "positive",
@@ -89,9 +90,9 @@ document.getElementById("hint").textContent = hintText;
   document.getElementById("output").textContent = text;
   firstTry = true;
 }
-input.addEventListener('keydown', function(event) {
+userInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-      button.click(); // Simulates a click on the button
+      checkAnswer(); // Simulates a click on the button
     }
   });
 //functio joka tarkistaa käyttäjän vastauksen
@@ -180,7 +181,6 @@ function restartGame() {
   document.getElementById("winModal").style.display = "none";
   updateText();
 }
-
 // Get elements
 const logoBtn = document.getElementById("logoBtn");
 const menuOverlay = document.getElementById("menuOverlay");
@@ -188,7 +188,7 @@ const menuModal = document.getElementById("menuModal");
 
 // Show menu
 function showMenu() {
-    menuOverlay.style.display = "block";
+    menuOverlay.style.display = "flex"; // use flex to center if needed
     menuModal.style.display = "block";
     menuModal.setAttribute("aria-hidden", "false");
 }
@@ -200,25 +200,25 @@ function hideMenu() {
     menuModal.setAttribute("aria-hidden", "true");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const logoBtn = document.getElementById("logoBtn");
-    const menuOverlay = document.getElementById("menuOverlay");
-    const menuModal = document.getElementById("menuModal");
+function homePage() {
+    window.location.href = "../etusivu/index.html";
+}
+function resetGame() {
+    location.reload();
+}
+// Click outside to close
+menuOverlay.addEventListener("click", hideMenu);
 
-    logoBtn.addEventListener("click", showMenu);
-    menuOverlay.addEventListener("click", hideMenu);
-    menuModal.addEventListener("click", (e) => e.stopPropagation());
-
-    document.getElementById("restartBtn").addEventListener("click", () => {
-        hideMenu();
-        restartGame();
-    });
-
-    document.getElementById("menuToMenuBtn").addEventListener("click", () => {
-        hideMenu();
-        window.location.href = "index.html";
-    });
+// Optional: prevent clicks inside modal from closing it
+menuModal.addEventListener("click", (event) => {
+    event.stopPropagation();
 });
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        hideMenu();
+    }
+});
+
 
 
 
