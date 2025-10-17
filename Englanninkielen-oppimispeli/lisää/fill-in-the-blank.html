@@ -5,10 +5,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Input Example</title>
+  <link rel="stylesheet" href="../theme.css" />
   <link rel="stylesheet" href="fill-in-the-blank.css" />
 </head>
 
 <body>
+  <header class="main-header">
+    <div class="container">
+        <a onclick="showMenu()" class="logo">
+            <div style="width: 200px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                <img src="../img/eduko.svg" alt="Front page button logo" height="192" width="216">
+            </div>
+        </a>
+    </div>
+</header>
+
+  <div id="menuOverlay"></div>
+  <div id="menuModal">
+    <h2></h2>
+    <button onclick="resetGame()" id="restartBtn">🔁 Aloita uudestaan</button>
+    <button onclick="homePage()"id="menuToMenuBtn">🏠 Palaa valikkoon</button>
+  </div>
+
   <div class="game-box">
     
     <h2></h2>
@@ -16,7 +34,6 @@
     <!-- näytetään sana ilman apu verbejä -->
     <p id="output"></p>
     <p id="hint" style="font-style: italic; color: #d0c58a;"></p>
-
 
     <input type="text" id="userInput" placeholder="Type something..." />
     <button onclick="checkAnswer()"id="checkAnswer">Vastaa</button> 
@@ -26,6 +43,7 @@
     <p id="input"></p>
 
     <div style="text-align:center; margin-top:28px;">
+      <button id="addOwnBtn" class="hidden" onclick="switchPage()">lisää omat lauseet</button>
       <button id="showModel" class="hidden" onclick="showModel()">Aloita alusta</button>
     </div>
   </div>
@@ -36,9 +54,8 @@
       <h2>Tervetuloaa Täydennä puuttuva sana peliin!</h2>
       <p>Sinun pitää täydentää tyhjät sanat jotka on apuverbit englanniksi.</p>
       <p>Voit myös lisätä omia lauseita painamalla "lisää omat lauseet" nappia.</p>
-      <p>Jos vastauksessa on enemmän kuin yksi sana laita pilkku vastauksien väliin (vastaus1, vastuas2)</p>
+      <p>Jos vastauksessa on enemmän kuin yksi sana laita väli vastauksien väliin (vastaus1 vastuas2)</p>
       <button onclick="closeModal()">Aloita peli</button>
-      <button onclick="switchPage()">Lisää omat lauseet</button>
     </div>
   </div>
 
@@ -46,7 +63,7 @@
   <!-- WIN MODAL -->
 <div id="winModal" class="gameModal" style="display: none;">
   <div class="modal-content">
-    <h2 id="winTitle">🎉 You Won! 🎉</h2>
+    <h2 id="winTitle">You Won!</h2>
     <p id="winText"></p>
     <button onclick="restartGame()">Play Again</button>
   </div>
@@ -57,4 +74,3 @@
 </body>
 
 </html>
-

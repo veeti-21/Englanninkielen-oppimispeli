@@ -271,3 +271,39 @@ function showWinModal(){
     document.getElementById("winModal").style.display = "flex";
 }
 // ------------------ MUUT FUNKTIOT ------------------
+
+const menuOverlay = document.getElementById("menuOverlay");
+const menuModal = document.getElementById("menuModal");
+
+// Show menu
+function showMenu() {
+    menuOverlay.style.display = "flex"; // use flex to center if needed
+    menuModal.style.display = "block";
+    menuModal.setAttribute("aria-hidden", "false");
+}
+
+// Hide menu
+function hideMenu() {
+    menuOverlay.style.display = "none";
+    menuModal.style.display = "none";
+    menuModal.setAttribute("aria-hidden", "true");
+}
+
+function homePage() {
+    window.location.href = "../etusivu/index.html";
+}
+function resetGame() {
+    location.reload();
+}
+// Click outside to close
+menuOverlay.addEventListener("click", hideMenu);
+
+// Optional: prevent clicks inside modal from closing it
+menuModal.addEventListener("click", (event) => {
+    event.stopPropagation();
+});
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        hideMenu();
+    }
+});

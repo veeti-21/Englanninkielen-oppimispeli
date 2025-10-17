@@ -3,20 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <title>Kuukausien Yhdistelypeli</title>
+  <link rel="stylesheet" href="../theme.css"/>
   <link rel="stylesheet" href="tyyli.css">
 </head>
 <body>
 
-  <div class="menu-wrapper">
-    <button class="btn secondary" id="menuToggleBtn">☰ Valikko</button>
+
+  <header class="main-header">
+    <div class="container">
+        <a onclick="showMenu()" class="logo">
+            <div style="width: 200px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                <img src="../img/eduko.svg" alt="Front page button logo" height="192" width="216">
+            </div>
+        </a>
+    </div>
+</header>
+
+  <div id="menuOverlay"></div>
+  <div id="menuModal">
+    <h2></h2>
+    <button onclick="resetGame()" id="restartBtn">🔁 Aloita uudestaan</button>
+    <button onclick="homePage()"id="menuToMenuBtn">🏠 Palaa valikkoon</button>
   </div>
 
-  <div id="modalOverlayMenu"></div>
-  <div id="menuModal" aria-hidden="true">
-    <button class="btn" id="restartBtn">🔁 Aloita uudestaan</button>
-    <button class="btn secondary" id="goToMenuBtn">🏠 Palaa etusivulle</button>
-  </div>
-
+  
   <div class="title-box">
     <h1>Yhdistä Suomenkieliset ja Englanninkieliset Kuukaudet</h1>
   </div>
@@ -38,8 +48,8 @@
   <div id="endModal" aria-hidden="true">
     <h2>🎉 Hienoa!</h2>
     <p>Oikein <span id="finalScore"></span> / 12</p>
-    <button class="btn" id="playAgainBtn">🔁 Pelaa uudelleen?</button>
-    <button class="btn secondary" id="menuBtn">🏠 Valikkoon?</button>
+    <button onclick="resetGame()" id="restartBtn">Pelaa uudelleen?</button>
+    <button onclick="homePage()"id="menuToMenuBtn">Palaa valikkoon?</button>
   </div>
 
   <script src="./peli.js"></script>

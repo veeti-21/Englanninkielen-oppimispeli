@@ -109,38 +109,41 @@ const months = [
       document.getElementById("endModal").style.display = "none";
     }
 
-    const menuBtn = document.getElementById("menuToggleBtn");
-    const menuModal = document.getElementById("menuModal");
-    const menuOverlay = document.getElementById("modalOverlayMenu");
+    const menuOverlay = document.getElementById("menuOverlay");
+const menuModal = document.getElementById("menuModal");
 
-    menuBtn.addEventListener("click", () => {
-      const isVisible = menuModal.style.display === "block";
-      menuModal.style.display = isVisible ? "none" : "block";
-      menuOverlay.style.display = isVisible ? "none" : "block";
-    });
+// Show menu
+function showMenu() {
+    menuOverlay.style.display = "flex"; // use flex to center if needed
+    menuModal.style.display = "block";
+    menuModal.setAttribute("aria-hidden", "false");
+}
 
-    menuOverlay.addEventListener("click", () => {
-      menuModal.style.display = "none";
-      menuOverlay.style.display = "none";
-    });
+// Hide menu
+function hideMenu() {
+    menuOverlay.style.display = "none";
+    menuModal.style.display = "none";
+    menuModal.setAttribute("aria-hidden", "true");
+}
 
-    document.getElementById("restartBtn").addEventListener("click", () => {
-      menuModal.style.display = "none";
-      menuOverlay.style.display = "none";
-      initGame();
-    });
+function homePage() {
+    window.location.href = "../etusivu/index.html";
+}
+function resetGame() {
+    location.reload();
+}
+// Click outside to close
+menuOverlay.addEventListener("click", hideMenu);
 
-    document.getElementById("goToMenuBtn").addEventListener("click", () => {
-      window.location.href = "menu.html";
-    });
-
-    document.getElementById("playAgainBtn").addEventListener("click", () => {
-      hideModal();
-      initGame();
-    });
-
-    document.getElementById("menuBtn").addEventListener("click", () => {
-      window.location.href = "menu.html";
-    });
-
+// Optional: prevent clicks inside modal from closing it
+menuModal.addEventListener("click", (event) => {
+    event.stopPropagation();
+});
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        hideMenu();
+    }
+});
+    
+    
     initGame();

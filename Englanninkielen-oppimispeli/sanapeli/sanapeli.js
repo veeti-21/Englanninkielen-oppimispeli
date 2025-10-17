@@ -41,17 +41,6 @@
       modalOverlay.style.display = "none";
       endModal.style.display = "none";
     }
-
-    function showMenu() {
-      menuOverlay.style.display = "block";
-      menuModal.style.display = "block";
-    }
-
-    function hideMenu() {
-      menuOverlay.style.display = "none";
-      menuModal.style.display = "none";
-    }
-
     function initGame() {
       wordBox.innerHTML = "";
       successMessage.style.display = "none";
@@ -116,12 +105,37 @@
     }
     document.getElementById("playAgainBtn").onclick = initGame;
     document.getElementById("restartBtn").onclick = initGame;
+// Show menu
+function showMenu() {
+    menuOverlay.style.display = "flex"; // use flex to center if needed
+    menuModal.style.display = "block";
+    menuModal.setAttribute("aria-hidden", "false");
+}
 
-    document.getElementById("menuBtn").onclick = () => window.location.href = "index.html";
-    document.getElementById("menuToMenuBtn").onclick = () => window.location.href = "index.html";
+// Hide menu
+function hideMenu() {
+    menuOverlay.style.display = "none";
+    menuModal.style.display = "none";
+    menuModal.setAttribute("aria-hidden", "true");
+}
 
-    document.getElementById("menuToggleBtn").onclick = showMenu;
-    menuOverlay.onclick = hideMenu;
-    modalOverlay.onclick = () => {};
+function homePage() {
+    window.location.href = "../etusivu/index.html";
+}
+function resetGame() {
+    location.reload();
+}
+// Click outside to close
+menuOverlay.addEventListener("click", hideMenu);
+
+// Optional: prevent clicks inside modal from closing it
+menuModal.addEventListener("click", (event) => {
+    event.stopPropagation();
+});
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        hideMenu();
+    }
+});
     initGame();
  

@@ -4,14 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sanapeli – Yhdistä sanat</title>
+  <link rel="stylesheet" href="../theme.css" />
   <link rel="stylesheet" href="sanapeli.css" />
 </head>
 <body>
 
+<header class="main-header">
+    <div class="container">
+        <a onclick="showMenu()" class="logo">
+            <div style="width: 200px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                <img src="../img/eduko.svg" alt="Front page button logo" height="192" width="216">
+            </div>
+        </a>
+    </div>
+</header>
 
-
-  <div class="menu-wrapper">
-    <button class="btn-menu" id="menuToggleBtn">☰</button>
+  <div id="menuOverlay"></div>
+  <div id="menuModal">
+    <h2></h2>
+    <button onclick="resetGame()" id="restartBtn">🔁 Aloita uudestaan</button>
+    <button onclick="homePage()"id="menuToMenuBtn">🏠 Palaa valikkoon</button>
   </div>
 
   <div class="game-box">
@@ -24,15 +36,8 @@
   <div id="endModal">
     <h2>🎉 Hienoa!</h2>
     <p>Olet yhdistänyt kaikki sanat oikein!</p>
-    <button id="playAgainBtn">🔁 Pelaa uudelleen</button>
-    <button id="menuBtn">🏠 Valikkoon</button>
-  </div>
-
-  <div id="menuOverlay"></div>
-  <div id="menuModal">
-    <h2></h2>
-    <button id="restartBtn">🔁 Aloita uudestaan</button>
-    <button id="menuToMenuBtn">🏠 Palaa valikkoon</button>
+    <button onclick="resetGame()" id="restartBtn">Pelaa uudelleen?</button>
+    <button onclick="homePage()"id="menuToMenuBtn">Palaa valikkoon?</button>
   </div>
 
 <script src="sanapeli.js"></script>
