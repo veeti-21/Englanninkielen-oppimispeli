@@ -103,8 +103,6 @@
         wordBox.appendChild(div);
       });
     }
-    document.getElementById("playAgainBtn").onclick = initGame;
-    document.getElementById("restartBtn").onclick = initGame;
 // Show menu
 function showMenu() {
     menuOverlay.style.display = "flex"; // use flex to center if needed
