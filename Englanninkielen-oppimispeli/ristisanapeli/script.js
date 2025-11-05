@@ -1,6 +1,6 @@
 const size = 14;
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const words = ["computer", "javascript", "chatgpt", "moi", "koira","kurapora","authenticate","implement","master","baiter"];
+const words = ["cat", "dog", "cow", "bird", "house","table","bed"];
 let placedWords = []; 
 
 let sanat = [];
